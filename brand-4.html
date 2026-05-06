@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand 04 — Industrial</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0A0A0A; --s1:#111; --s2:#171717; --s3:#202020;
+  --b:rgba(255,255,255,0.07); --b2:rgba(255,255,255,0.12);
+  --t1:#F5F5F0; --t2:rgba(245,245,240,0.5); --t3:rgba(245,245,240,0.22);
+  --ac:#C8F544; --ac-dim:rgba(200,245,68,0.1);
+  --D:'Space Grotesk',sans-serif; --M:'Space Mono',monospace;
+}
+body{font-family:var(--D);background:var(--bg);color:var(--t1);-webkit-font-smoothing:antialiased;min-height:100vh;padding:48px}
+.label{font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--t3);margin-bottom:20px;font-family:var(--M)}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px}
+.col{flex:1;min-width:0}
+hr{border:none;border-top:1px solid var(--b);margin:48px 0}
+
+/* Wordmark */
+.wordmark{font-family:var(--D);font-size:88px;font-weight:700;letter-spacing:-0.04em;color:var(--t1);line-height:.88;margin-bottom:12px}
+.wordmark span{color:var(--ac)}
+.tagline{font-family:var(--M);font-size:11px;font-weight:400;color:var(--t3);letter-spacing:0.1em;text-transform:uppercase}
+
+/* Palette */
+.swatch{border-radius:6px;height:72px;margin-bottom:8px}
+.swatch-label{font-size:11px;color:var(--t3);font-family:var(--M)}
+.swatch-name{font-size:12px;color:var(--t2);margin-bottom:2px}
+
+/* Type */
+.type-xl{font-family:var(--D);font-size:64px;font-weight:700;line-height:.92;letter-spacing:-0.04em;color:var(--t1);margin-bottom:16px}
+.type-xl span{color:var(--ac)}
+.type-mono{font-family:var(--M);font-size:12px;color:var(--t3);line-height:1.8;margin-bottom:8px}
+.type-body{font-size:15px;font-weight:300;color:var(--t2);line-height:1.75;max-width:460px;margin-bottom:8px}
+.font-spec{font-size:11px;color:var(--t3);font-family:var(--M);margin-top:4px}
+
+/* Components */
+.btn-a{display:inline-flex;align-items:center;gap:8px;background:var(--ac);color:#0A0A0A;font-family:var(--D);font-size:13px;font-weight:700;padding:11px 22px;border-radius:6px;margin-right:8px;margin-bottom:8px;letter-spacing:-0.01em}
+.btn-b{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--t2);font-family:var(--D);font-size:13px;font-weight:500;padding:11px 20px;border-radius:6px;border:1px solid var(--b2);margin-bottom:8px}
+.btn-c{display:inline-flex;align-items:center;gap:8px;background:var(--s2);color:var(--t1);font-family:var(--M);font-size:12px;font-weight:700;padding:11px 20px;border-radius:6px;border:1px solid var(--b);margin-bottom:8px;letter-spacing:0.04em}
+.mono-tag{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--b2);border-radius:4px;padding:4px 10px;font-size:10px;font-weight:700;font-family:var(--M);color:var(--t3);margin-right:6px;margin-bottom:6px;letter-spacing:0.06em;text-transform:uppercase}
+.mono-tag.on{border-color:var(--ac);color:var(--ac);background:var(--ac-dim)}
+.card-ex{background:var(--s1);border:1px solid var(--b);border-radius:8px;padding:20px;margin-bottom:8px}
+.card-ex-label{font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--t3);margin-bottom:8px;font-weight:700;font-family:var(--M)}
+.card-ex-val{font-family:var(--D);font-size:34px;font-weight:700;letter-spacing:-0.03em;color:var(--t1)}
+.card-ex-sub{font-size:11px;color:var(--t3);margin-top:4px;font-family:var(--M)}
+</style>
+</head>
+<body>
+
+<p class="label">// 01 — Wordmark</p>
+<div class="wordmark">ARKO<span>_</span></div>
+<div class="tagline">// Construction Safety Intelligence</div>
+
+<hr>
+
+<p class="label">// 02 — Colour Palette</p>
+<div class="row">
+  <div class="col">
+    <div class="swatch" style="background:#0A0A0A;border:1px solid rgba(255,255,255,0.1)"></div>
+    <div class="swatch-name">Background</div>
+    <div class="swatch-label">#0A0A0A</div>
+  </div>
+  <div class="col">
+    <div class="swatch" style="background:#171717"></div>
+    <div class="swatch-name">Surface</div>
+    <div class="swatch-label">#171717</div>
+  </div>
+  <div class="col">
+    <div class="swatch" style="background:#202020"></div>
+    <div class="swatch-name">Elevated</div>
+    <div class="swatch-label">#202020</div>
+  </div>
+  <div class="col">
+    <div class="swatch" style="background:#C8F544"></div>
+    <div class="swatch-name">Lime</div>
+    <div class="swatch-label">#C8F544</div>
+  </div>
+  <div class="col">
+    <div class="swatch" style="background:#F5F5F0"></div>
+    <div class="swatch-name">Off-white</div>
+    <div class="swatch-label">#F5F5F0</div>
+  </div>
+  <div class="col">
+    <div class="swatch" style="background:#FF4444"></div>
+    <div class="swatch-name">Alert</div>
+    <div class="swatch-label">#FF4444</div>
+  </div>
+</div>
+
+<hr>
+
+<p class="label">// 03 — Typography</p>
+<div style="margin-bottom:32px">
+  <div class="type-xl">ZERO<br>HARM<span>.</span></div>
+  <div class="type-body">Arko brings construction safety intelligence to every team, every project, every day — with precision that matters.</div>
+  <div class="type-mono">$ font-family: 'Space Grotesk' 700 // Display<br>$ font-size: clamp(48px, 8vw, 96px) // Responsive</div>
+  <div class="font-spec">// Display: Space Grotesk 700 · UI: Space Grotesk 400</div>
+</div>
+<div>
+  <div style="font-size:15px;font-weight:500;color:var(--t1);margin-bottom:4px">Space Grotesk Medium — Body text</div>
+  <div style="font-size:13px;font-weight:300;color:var(--t2);margin-bottom:4px">Space Grotesk Light — Secondary</div>
+  <div style="font-size:11px;font-weight:700;color:var(--t3);letter-spacing:0.1em;text-transform:uppercase;font-family:var(--M)">SPACE_MONO 700 — CODE LABELS</div>
+  <div class="font-spec">// Mono: Space Mono 400/700 — labels, data, tags</div>
+</div>
+
+<hr>
+
+<p class="label">// 04 — Components</p>
+<div style="margin-bottom:24px">
+  <span class="btn-a">Get started →</span>
+  <span class="btn-b">Learn more</span>
+  <span class="btn-c">$ DASHBOARD</span>
+</div>
+<div style="margin-bottom:24px">
+  <span class="mono-tag on">● LIVE</span>
+  <span class="mono-tag">ZONE_A</span>
+  <span class="mono-tag">ZONE_B</span>
+  <span class="mono-tag">ZONE_C</span>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="card-ex">
+      <div class="card-ex-label">// sites_monitored</div>
+      <div class="card-ex-val">2,847</div>
+      <div class="card-ex-sub">+12 this_week</div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card-ex">
+      <div class="card-ex-label">// risk_score</div>
+      <div class="card-ex-val" style="color:#C8F544">98.4%</div>
+      <div class="card-ex-sub">STATUS: excellent</div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card-ex">
+      <div class="card-ex-label">// open_incidents</div>
+      <div class="card-ex-val" style="color:#FF4444">3</div>
+      <div class="card-ex-sub">PRIORITY: high</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

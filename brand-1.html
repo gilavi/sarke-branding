@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand 01 — Elegant</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0C0C0C; --s1:#111; --s2:#171717; --s3:#1E1E1E;
+  --b:rgba(255,255,255,0.07); --b2:rgba(255,255,255,0.13);
+  --t1:#fff; --t2:rgba(255,255,255,0.5); --t3:rgba(255,255,255,0.22);
+  --D:'Cormorant',Georgia,serif; --B:'Geist',system-ui,sans-serif;
+}
+body{font-family:var(--B);background:var(--bg);color:var(--t1);-webkit-font-smoothing:antialiased;min-height:100vh;padding:48px}
+.label{font-size:10px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3);margin-bottom:20px}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px}
+.col{flex:1;min-width:0}
+hr{border:none;border-top:1px solid var(--b);margin:48px 0}
+
+/* Wordmark */
+.wordmark{font-family:var(--D);font-size:96px;font-weight:300;letter-spacing:0.12em;color:var(--t1);line-height:1;margin-bottom:8px}
+.wordmark em{font-style:italic;color:var(--t2)}
+.tagline{font-size:13px;font-weight:300;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase}
+
+/* Palette */
+.swatch{border-radius:10px;height:72px;margin-bottom:8px}
+.swatch-label{font-size:11px;color:var(--t3);font-family:monospace}
+.swatch-name{font-size:12px;color:var(--t2);margin-bottom:2px}
+
+/* Type */
+.type-xl{font-family:var(--D);font-size:72px;font-weight:300;line-height:.95;color:var(--t1);margin-bottom:16px}
+.type-xl em{font-style:italic;color:var(--t2)}
+.type-lg{font-family:var(--D);font-size:36px;font-weight:300;color:var(--t1);margin-bottom:8px}
+.type-body{font-size:15px;font-weight:300;color:var(--t2);line-height:1.75;max-width:460px;margin-bottom:8px}
+.type-small{font-size:12px;font-weight:300;color:var(--t3);letter-spacing:0.04em;text-transform:uppercase}
+.font-spec{font-size:11px;color:var(--t3);font-family:monospace;margin-top:4px}
+
+/* Components */
+.btn-a{display:inline-flex;align-items:center;gap:8px;background:var(--t1);color:#0C0C0C;font-family:var(--B);font-size:13px;font-weight:500;padding:12px 24px;border-radius:8px;margin-right:8px;margin-bottom:8px}
+.btn-b{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--t2);font-family:var(--B);font-size:13px;font-weight:300;padding:12px 20px;border-radius:8px;border:1px solid var(--b2);margin-bottom:8px}
+.card-ex{background:var(--s2);border:1px solid var(--b);border-radius:14px;padding:24px;margin-bottom:8px}
+.card-ex-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--t3);margin-bottom:6px}
+.card-ex-val{font-family:var(--D);font-size:36px;font-weight:300;color:var(--t1)}
+.badge-ex{display:inline-flex;align-items:center;gap:6px;background:var(--s2);border:1px solid var(--b2);border-radius:100px;padding:4px 12px;font-size:11px;color:var(--t3);margin-right:6px;margin-bottom:6px}
+.badge-dot{width:5px;height:5px;border-radius:50%;background:var(--t2);display:inline-block}
+</style>
+</head>
+<body>
+
+<p class="label">01 — Wordmark</p>
+<div class="wordmark">Arko<em>.</em></div>
+<div class="tagline">Construction Safety Intelligence</div>
+
+<hr>
+
+<p class="label">02 — Colour Palette</p>
+<div class="row">
+  <div class="col">
+    <div class="swatch" style="background:#0C0C0C;border:1px solid rgba(255,255,255,0.1)"></div>
+    <div class="swatch-name">Background</div>
+    <div class="swatch-label">#0C0C0C</div>
+  </div>
+  <div class="col">
+    <div class="swatch" style="background:#171717"></div>
+    <div class="swatch-name">Surface</div>
+    <div class="swatch-label">#171717</div>
+  </div>
+  <div class="col">
+    <div class="swatch" style="background:#1E1E1E"></div>
+    <div class="swatch-name">Elevated</div>
+    <div class="swatch-label">#1E1E1E</div>
+  </div>
+  <div class="col">
+    <div class="swatch" style="background:#FFFFFF"></div>
+    <div class="swatch-name">White</div>
+    <div class="swatch-label">#FFFFFF</div>
+  </div>
+  <div class="col">
+    <div class="swatch" style="background:rgba(255,255,255,0.5)"></div>
+    <div class="swatch-name">Muted</div>
+    <div class="swatch-label">White / 50%</div>
+  </div>
+  <div class="col">
+    <div class="swatch" style="background:rgba(255,255,255,0.07)"></div>
+    <div class="swatch-name">Border</div>
+    <div class="swatch-label">White / 7%</div>
+  </div>
+</div>
+
+<hr>
+
+<p class="label">03 — Typography</p>
+<div style="margin-bottom:32px">
+  <div class="type-xl">Safety <em>Redefined</em></div>
+  <div class="type-lg">Zero incidents. Every site.</div>
+  <div class="type-body">Arko brings construction safety intelligence to every team, every project, every day — with precision that matters.</div>
+  <div class="type-small">Display · Cormorant 300 / Italic</div>
+  <div class="font-spec">font-family: 'Cormorant' — Display &amp; Headlines</div>
+</div>
+<div>
+  <div style="font-size:15px;font-weight:400;color:var(--t1);margin-bottom:4px">Geist Regular — Body text, navigation, labels</div>
+  <div style="font-size:13px;font-weight:300;color:var(--t2);margin-bottom:4px">Geist Light — Secondary body, descriptions</div>
+  <div style="font-size:11px;font-weight:400;color:var(--t3);letter-spacing:0.1em;text-transform:uppercase">GEIST 400 — CAPS LABELS</div>
+  <div class="font-spec">font-family: 'Geist' — UI, body, labels</div>
+</div>
+
+<hr>
+
+<p class="label">04 — Components</p>
+<div style="margin-bottom:24px">
+  <span class="btn-a">Get started →</span>
+  <span class="btn-b">Learn more</span>
+</div>
+<div style="margin-bottom:24px">
+  <span class="badge-ex"><span class="badge-dot"></span>Active</span>
+  <span class="badge-ex"><span class="badge-dot" style="background:rgba(255,200,80,0.6)"></span>Pending</span>
+  <span class="badge-ex"><span class="badge-dot" style="background:rgba(231,76,60,0.6)"></span>Critical</span>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="card-ex">
+      <div class="card-ex-label">Sites monitored</div>
+      <div class="card-ex-val">2,847</div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card-ex">
+      <div class="card-ex-label">Risk score</div>
+      <div class="card-ex-val">98.4<span style="font-size:20px;color:var(--t2)">%</span></div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card-ex">
+      <div class="card-ex-label">Incidents prevented</div>
+      <div class="card-ex-val">340+</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

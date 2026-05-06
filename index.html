@@ -3,83 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arko — Branding Versions</title>
+<title>Arko — Branding</title>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --bg: #080808;
-  --surface: #111111;
-  --border: rgba(255,255,255,0.08);
-  --border2: rgba(255,255,255,0.14);
-  --t1: #ffffff;
-  --t2: rgba(255,255,255,0.45);
-  --t3: rgba(255,255,255,0.22);
-  --accent: #E8622F;
-}
-html, body { height: 100%; overflow: hidden; background: var(--bg); font-family: system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:#080808;font-family:system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
 
-.bar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
-  height: 48px;
-  background: rgba(8,8,8,0.96);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; padding: 0 20px; gap: 16px;
+.bar{
+  position:fixed;top:0;left:0;right:0;z-index:9999;height:48px;
+  background:rgba(8,8,8,0.97);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  display:flex;align-items:center;padding:0 20px;gap:10px;
 }
 
-.bar-logo {
-  font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
-  color: var(--t3); text-transform: uppercase; flex-shrink: 0;
-  margin-right: 4px;
-}
+.bar-logo{font-size:12px;font-weight:600;letter-spacing:0.1em;color:rgba(255,255,255,0.2);text-transform:uppercase;flex-shrink:0;margin-right:6px}
 
-.tabs {
-  display: flex; gap: 2px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  padding: 3px;
-}
+.tabs{display:flex;gap:2px;background:#111;border:1px solid rgba(255,255,255,0.08);border-radius:9px;padding:3px}
 
-.tab {
-  font-size: 12px; font-weight: 500;
-  color: var(--t2);
-  padding: 5px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  border: none; background: none;
-  font-family: inherit;
-  transition: background 0.12s, color 0.12s;
-  white-space: nowrap;
+.tab{
+  font-size:12px;font-weight:500;color:rgba(255,255,255,0.4);
+  padding:5px 18px;border-radius:6px;cursor:pointer;
+  border:none;background:none;font-family:inherit;
+  transition:background .12s,color .12s;white-space:nowrap;
 }
-.tab:hover { color: var(--t1); }
-.tab.active {
-  background: var(--t1);
-  color: #080808;
-  font-weight: 600;
-}
+.tab:hover{color:#fff}
+.tab.active{background:#fff;color:#080808;font-weight:600}
 
-.badge {
-  font-size: 10px; font-weight: 500;
-  color: var(--t3);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 3px 8px;
-  letter-spacing: 0.04em;
-}
+.desc{font-size:11px;color:rgba(255,255,255,0.2);margin-left:4px;flex-shrink:0}
 
-.frames {
-  position: fixed; top: 48px; left: 0; right: 0; bottom: 0;
-}
-
-.frame {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  border: none;
-  display: none;
-}
-.frame.active { display: block; }
+.frames{position:fixed;top:48px;left:0;right:0;bottom:0}
+.frame{position:absolute;inset:0;width:100%;height:100%;border:none;display:none}
+.frame.active{display:block}
 </style>
 </head>
 <body>
@@ -87,29 +40,30 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); font-family:
 <div class="bar">
   <span class="bar-logo">Arko</span>
   <div class="tabs">
-    <button class="tab active" onclick="show(0)">Landing v1</button>
-    <button class="tab" onclick="show(1)">Landing v2</button>
-    <button class="tab" onclick="show(2)">Brand Guide</button>
+    <button class="tab active" onclick="show(0)">01 · Elegant</button>
+    <button class="tab" onclick="show(1)">02 · Bold</button>
+    <button class="tab" onclick="show(2)">03 · Structured</button>
+    <button class="tab" onclick="show(3)">04 · Industrial</button>
   </div>
-  <span class="badge" id="badge">Elegant · Cormorant</span>
+  <span class="desc" id="desc">Cormorant · Geist</span>
 </div>
 
 <div class="frames">
-  <iframe class="frame active" src="v1-elegant.html" id="f0"></iframe>
-  <iframe class="frame" src="v2-bold.html" id="f1"></iframe>
-  <iframe class="frame" src="brand-guide.html" id="f2"></iframe>
+  <iframe class="frame active" src="brand-1.html"></iframe>
+  <iframe class="frame" src="brand-2.html"></iframe>
+  <iframe class="frame" src="brand-3.html"></iframe>
+  <iframe class="frame" src="brand-4.html"></iframe>
 </div>
 
 <script>
-const badges = ['Elegant · Cormorant', 'Bold · Unbounded', 'Brand Guidelines · Syne'];
+const descs = ['Cormorant · Geist','Unbounded · Jakarta Sans','Syne · DM Sans','Space Grotesk · Space Mono'];
 const tabs = document.querySelectorAll('.tab');
 const frames = document.querySelectorAll('.frame');
-const badge = document.getElementById('badge');
-
-function show(i) {
-  tabs.forEach((t, j) => t.classList.toggle('active', j === i));
-  frames.forEach((f, j) => f.classList.toggle('active', j === i));
-  badge.textContent = badges[i];
+const desc = document.getElementById('desc');
+function show(i){
+  tabs.forEach((t,j)=>t.classList.toggle('active',j===i));
+  frames.forEach((f,j)=>f.classList.toggle('active',j===i));
+  desc.textContent=descs[i];
 }
 </script>
 </body>
