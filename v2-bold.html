@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arko</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080808;--s1:#111;--s2:#181818;--s3:#222;--s4:#2A2A2A;
+  --b:rgba(255,255,255,0.07);--b2:rgba(255,255,255,0.13);
+  --t1:#fff;--t2:rgba(255,255,255,0.55);--t3:rgba(255,255,255,0.25);--t4:rgba(255,255,255,0.1);
+  --or:#E8622F;--org:linear-gradient(135deg,#E8622F,#FF9B6A);
+  --gr:#2ECC71;--gr-d:rgba(46,204,113,0.12);
+  --ye:#F5A623;--ye-d:rgba(245,166,35,0.1);
+  --re:#E74C3C;--re-d:rgba(231,76,60,0.1);
+  --D:'Unbounded',sans-serif;--B:'Plus Jakarta Sans',sans-serif;
+  --r:16px;--r2:24px;--r3:32px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--B);background:var(--bg);color:var(--t1);-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+
+/* ═══ PAGE SWITCHER ═══ */
+.switcher{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  height:56px;background:rgba(8,8,8,0.95);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--b);
+  display:flex;align-items:center;padding:0 32px;gap:24px;
+}
+.sw-logo{font-family:var(--D);font-size:14px;font-weight:900;letter-spacing:0.04em;color:var(--t1);margin-right:16px}
+.sw-tabs{display:flex;gap:2px;background:var(--s2);border:1px solid var(--b);border-radius:10px;padding:3px}
+.sw-tab{font-size:12px;font-weight:500;color:var(--t3);padding:6px 18px;border-radius:7px;cursor:pointer;transition:all .15s;border:none;background:none;font-family:var(--B)}
+.sw-tab.on{background:var(--t1);color:var(--bg);font-weight:600}
+.sw-right{margin-left:auto;display:flex;gap:8px;align-items:center}
+.sw-nav-link{font-size:12px;color:var(--t3);text-decoration:none;padding:4px 10px;transition:color .15s}
+.sw-nav-link:hover{color:var(--t1)}
+.sw-dl{background:var(--t1);color:var(--bg);font-size:12px;font-weight:600;padding:8px 18px;border-radius:8px;text-decoration:none;font-family:var(--B);transition:opacity .15s}
+.sw-dl:hover{opacity:.85}
+
+/* ═══ PAGES ═══ */
+.page{display:none;padding-top:56px}
+.page.on{display:block}
+
+/* ═══ SHARED ═══ */
+.wrap{max-width:1200px;margin:0 auto;padding:0 48px}
+.sec{padding:96px 0}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--s2);border:1px solid var(--b2);border-radius:100px;padding:5px 14px 5px 8px;font-size:11px;font-weight:500;color:var(--t3);letter-spacing:0.02em}
+.chip-dot{width:6px;height:6px;border-radius:50%;background:var(--or)}
+.label{font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--t3);margin-bottom:12px}
+.h-xl{font-family:var(--D);font-size:clamp(48px,8vw,96px);font-weight:900;letter-spacing:-0.03em;line-height:.92}
+.h-lg{font-family:var(--D);font-size:clamp(32px,5vw,56px);font-weight:900;letter-spacing:-0.03em;line-height:.95}
+.h-md{font-family:var(--D);font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-0.02em;line-height:1.1}
+.grad{background:var(--org);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.body-lg{font-size:17px;font-weight:300;color:var(--t2);line-height:1.75}
+.body-sm{font-size:14px;font-weight:300;color:var(--t2);line-height:1.7}
+.card{background:var(--s1);border:1px solid var(--b);border-radius:var(--r2);overflow:hidden}
+.sep{border:none;border-top:1px solid var(--b);margin:0}
+.btn-white{display:inline-flex;align-items:center;gap:8px;background:var(--t1);color:var(--bg);font-family:var(--B);font-size:14px;font-weight:600;padding:14px 28px;border-radius:12px;text-decoration:none;transition:opacity .15s;letter-spacing:-.01em}
+.btn-white:hover{opacity:.88}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--t2);font-family:var(--B);font-size:14px;font-weight:400;padding:14px 24px;border-radius:12px;border:1px solid var(--b2);text-decoration:none;transition:all .15s}
+.btn-ghost:hover{border-color:rgba(255,255,255,.3);color:var(--t1)}
+
+
+/* ═══════════════════════════════════
+   LANDING PAGE
+═══════════════════════════════════ */
+
+/* ── HERO ── */
+.hero{
+  min-height:calc(100vh - 56px);display:flex;flex-direction:column;
+  justify-content:center;padding:80px 0 60px;position:relative;overflow:hidden;
+}
+.hero-glow{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(232,98,47,.07) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-60%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--b) 1px,transparent 1px),linear-gradient(90deg,var(--b) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 90% 80% at 50% 40%,black 20%,transparent 80%);pointer-events:none}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1}
+.hero-headline{margin-top:28px}
+.hero-actions{display:flex;gap:12px;margin-top:40px;flex-wrap:wrap}
+
+/* Phone cluster */
+.phone-cluster{display:flex;justify-content:center;align-items:flex-end;gap:-10px;position:relative}
+.ph{background:#141414;border:1px solid rgba(255,255,255,.12);border-radius:36px;padding:9px;position:relative;box-shadow:0 40px 80px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.04) inset}
+.ph.main{width:220px;height:460px;z-index:2}
+.ph.sub{width:180px;height:380px;opacity:.7}
+.ph.sub.l{transform:rotate(-5deg) translateX(20px)}
+.ph.sub.r{transform:rotate(5deg) translateX(-20px)}
+.ps{width:100%;height:100%;background:#0E0E0E;border-radius:28px;overflow:hidden;display:flex;flex-direction:column}
+.pi{width:76px;height:22px;background:#000;border-radius:100px;margin:8px auto 0;flex-shrink:0}
+.pb{flex:1;padding:12px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.pt{font-size:9px;font-weight:500;color:var(--t3);letter-spacing:.04em}
+.pn{font-family:var(--D);font-size:18px;font-weight:900;color:var(--t1);line-height:1;letter-spacing:-.02em}
+.pc{background:#1A1A1A;border-radius:14px;padding:13px}
+.pcl{font-size:8px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--t3)}
+.pcv{font-family:var(--D);font-size:30px;font-weight:900;color:var(--t1);line-height:1.05;letter-spacing:-.03em;margin-top:3px}
+.pcv span{font-size:16px;color:var(--t3)}
+.pp{display:flex;gap:4px;margin-top:10px}
+.ppp{flex:1;background:rgba(255,255,255,.05);border-radius:6px;padding:5px;text-align:center;font-size:7px;color:var(--t3)}
+.ppp.on{background:var(--gr-d);color:var(--gr)}
+.psec{display:flex;justify-content:space-between;font-size:8px;color:var(--t3);font-weight:500;letter-spacing:.05em;text-transform:uppercase}
+.pi-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.pi-row:last-child{border:none}
+.pi-icon{width:24px;height:24px;background:rgba(255,255,255,.06);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0}
+.pi-n{font-size:9px;color:var(--t1);font-weight:500;flex:1}
+.pi-s{font-size:7px;color:var(--t4)}
+.pi-b{font-size:8px;font-weight:600;padding:2px 7px;border-radius:100px}
+.bi-ok{background:var(--gr-d);color:var(--gr)}
+.bi-warn{background:var(--ye-d);color:var(--ye)}
+.bi-late{background:var(--re-d);color:var(--re)}
+.pnav{display:flex;justify-content:space-around;padding:8px;border-top:1px solid rgba(255,255,255,.05);margin-top:auto}
+.pni{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--t3)}
+.pni.on{background:rgba(255,255,255,.08);color:var(--t1)}
+
+/* ── STATS ── */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--b);border-radius:var(--r2);overflow:hidden}
+.stat{padding:40px;border-right:1px solid var(--b)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--D);font-size:48px;font-weight:900;letter-spacing:-.03em;line-height:1;background:var(--org);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-l{font-size:13px;font-weight:300;color:var(--t3);margin-top:8px;letter-spacing:.01em}
+
+/* ── FEATURES BENTO ── */
+.bento{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto;gap:16px;margin-top:48px}
+.b-card{background:var(--s1);border:1px solid var(--b);border-radius:var(--r2);padding:32px;transition:border-color .2s,background .2s}
+.b-card:hover{border-color:var(--b2);background:var(--s2)}
+.b-card.wide{grid-column:span 2}
+.b-card.tall{display:flex;flex-direction:column;justify-content:space-between;min-height:280px}
+.b-icon{width:44px;height:44px;background:var(--s3);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:24px;flex-shrink:0}
+.b-title{font-size:17px;font-weight:600;color:var(--t1);margin-bottom:8px;letter-spacing:-.01em}
+.b-text{font-size:13px;font-weight:300;color:var(--t2);line-height:1.65}
+.b-visual{flex:1;display:flex;align-items:flex-end;margin-top:20px}
+
+/* mini checklist inside bento */
+.mini-list{display:flex;flex-direction:column;gap:0;width:100%;margin-top:16px}
+.mini-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:12px}
+.mini-item:last-child{border:none}
+.mini-check{width:16px;height:16px;border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700}
+.mc-ok{background:var(--gr-d);color:var(--gr);border:1px solid rgba(46,204,113,.25)}
+.mc-no{border:1px solid var(--b2);color:transparent}
+.mini-label{color:var(--t2);font-weight:400;flex:1}
+.mini-label.done{color:var(--t3);text-decoration:line-through}
+.mini-status{font-size:10px;font-weight:500;padding:2px 8px;border-radius:100px}
+
+/* progress bar visual */
+.prog-wrap{width:100%;margin-top:16px}
+.prog-label{display:flex;justify-content:space-between;font-size:11px;color:var(--t3);margin-bottom:8px}
+.prog-track{height:6px;background:rgba(255,255,255,.06);border-radius:3px}
+.prog-fill{height:100%;border-radius:3px;background:var(--org)}
+
+/* pdf preview */
+.pdf-mini{background:#1A1A1A;border-radius:12px;padding:16px;width:100%;margin-top:16px}
+.pdf-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.pdf-logo{font-family:var(--D);font-size:12px;font-weight:900;color:var(--t1)}
+.pdf-badge{font-size:9px;font-weight:600;padding:3px 8px;background:var(--gr-d);color:var(--gr);border-radius:100px}
+.pdf-line{height:6px;background:rgba(255,255,255,.06);border-radius:3px;margin-bottom:6px}
+.pdf-line.short{width:60%}
+.pdf-line.xshort{width:40%}
+
+/* ── GEORGIA ── */
+.georgia-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px}
+.geo-card{background:var(--s1);border:1px solid var(--b);border-radius:var(--r2);padding:36px}
+.geo-num{font-family:var(--D);font-size:52px;font-weight:900;letter-spacing:-.03em;line-height:1;color:var(--t1)}
+.geo-num.grad{background:var(--org);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.geo-label{font-size:13px;font-weight:300;color:var(--t3);margin-top:8px}
+
+.feat-list{display:flex;flex-direction:column;gap:0}
+.feat-item{display:flex;gap:16px;align-items:flex-start;padding:20px 0;border-bottom:1px solid var(--b)}
+.feat-item:first-child{padding-top:0}
+.feat-item:last-child{border:none;padding-bottom:0}
+.feat-num{font-family:var(--D);font-size:12px;font-weight:700;color:var(--or);min-width:28px;padding-top:2px}
+.feat-item-title{font-size:14px;font-weight:600;color:var(--t1);margin-bottom:4px}
+.feat-item-text{font-size:13px;font-weight:300;color:var(--t2);line-height:1.6}
+
+/* ── CTA ── */
+.cta-block{background:var(--s1);border:1px solid var(--b);border-radius:var(--r3);padding:80px;text-align:center;position:relative;overflow:hidden}
+.cta-glow{position:absolute;width:600px;height:300px;background:radial-gradient(circle,rgba(232,98,47,.06) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.cta-actions{display:flex;gap:12px;justify-content:center;margin-top:40px;flex-wrap:wrap}
+.store-btn{display:inline-flex;align-items:center;gap:12px;background:var(--t1);color:var(--bg);padding:14px 24px;border-radius:12px;text-decoration:none;transition:opacity .15s;min-width:160px}
+.store-btn:hover{opacity:.88}
+.sb-icon{font-size:22px}
+.sb-small{font-size:9px;font-weight:400;color:rgba(0,0,0,.45);text-transform:uppercase;letter-spacing:.06em}
+.sb-big{font-size:15px;font-weight:600;color:#000}
+
+/* ── FOOTER ── */
+.footer{border-top:1px solid var(--b);padding:40px 0}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.footer-logo{font-family:var(--D);font-size:16px;font-weight:900;color:var(--t3)}
+.footer-links{display:flex;gap:28px;list-style:none}
+.footer-links a{font-size:12px;color:var(--t3);text-decoration:none;transition:color .15s}
+.footer-links a:hover{color:var(--t1)}
+.footer-copy{font-size:12px;color:var(--t4);font-weight:300}
+
+
+/* ═══════════════════════════════════
+   BRAND PAGE
+═══════════════════════════════════ */
+.brand-cover{
+  min-height:calc(100vh - 56px);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  position:relative;overflow:hidden;
+}
+.bc-grid{position:absolute;inset:0;background-image:linear-gradient(var(--b) 1px,transparent 1px),linear-gradient(90deg,var(--b) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 80%)}
+.bc-glow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(232,98,47,.05) 0%,transparent 70%);pointer-events:none}
+.bc-title{font-family:var(--D);font-size:clamp(80px,15vw,180px);font-weight:900;letter-spacing:-.03em;line-height:.88;position:relative;z-index:1}
+.bc-sub{font-size:13px;font-weight:400;color:var(--t3);letter-spacing:.06em;margin-top:16px;position:relative;z-index:1;text-transform:uppercase}
+.bc-meta{display:flex;gap:8px;margin-top:32px;position:relative;z-index:1;flex-wrap:wrap;justify-content:center}
+.bc-tag{background:var(--s2);border:1px solid var(--b);border-radius:8px;padding:8px 16px;font-size:11px;color:var(--t3);font-weight:500}
+.bc-tag span{color:var(--t2)}
+
+/* brand sections */
+.brand-sec{padding:80px 0}
+.brand-sec + .sep{margin:0}
+.brand-grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.brand-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.brand-grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.bcard{background:var(--s1);border:1px solid var(--b);border-radius:var(--r2)}
+.bcard-p{padding:28px}
+
+/* logo display */
+.logo-showcase{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--b);border-radius:var(--r2);overflow:hidden;gap:1px;background:var(--b);margin-top:32px}
+.lc{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:180px;gap:12px;padding:48px}
+.lc.d{background:#080808}
+.lc.w{background:#fff}
+.lc.g{background:#1E1E1E}
+.lc.p{background:#F4F2EE}
+.lc-wm{font-family:var(--D);font-size:44px;font-weight:900;letter-spacing:.02em}
+.lc-cap{font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase}
+.lc.d .lc-wm,.lc.g .lc-wm{color:#fff}
+.lc.w .lc-wm,.lc.p .lc-wm{color:#080808}
+.lc.d .lc-cap,.lc.g .lc-cap{color:rgba(255,255,255,.2)}
+.lc.w .lc-cap,.lc.p .lc-cap{color:rgba(0,0,0,.2)}
+
+.dont-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+.dont-c{background:var(--s1);border:1px solid var(--b);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;align-items:center;gap:12px;position:relative;overflow:hidden}
+.dont-c::after{content:'';position:absolute;top:50%;left:50%;width:130%;height:1.5px;background:rgba(220,50,50,.4);transform:translate(-50%,-50%) rotate(-12deg)}
+.dont-lbl{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--t4);text-align:center}
+
+/* colors */
+.color-hero{display:grid;grid-template-columns:3fr 1.2fr 1.2fr;gap:3px;border-radius:var(--r2);overflow:hidden;height:200px;margin-top:32px}
+.color-row2{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:3px;height:90px}
+.csw{display:flex;flex-direction:column;justify-content:flex-end;padding:18px}
+.csw-role{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.csw-name{font-size:14px;font-weight:600}
+.csw-hex{font-size:11px;font-weight:300;font-family:monospace;margin-top:2px}
+
+.token-tbl{width:100%;border-collapse:collapse;font-size:12px;margin-top:24px}
+.token-tbl th{text-align:left;font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t4);padding:10px 16px;border-bottom:1px solid var(--b)}
+.token-tbl td{padding:11px 16px;border-bottom:1px solid var(--b);font-weight:300;color:var(--t2);vertical-align:middle}
+.token-tbl td:first-child{font-family:monospace;font-size:11px;color:var(--or)}
+.token-tbl tr:last-child td{border:none}
+.tdot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:8px;vertical-align:middle}
+
+/* type */
+.type-spec{margin-top:32px}
+.type-row{display:flex;align-items:baseline;gap:32px;padding:24px 0;border-bottom:1px solid var(--b)}
+.type-row:last-child{border:none}
+.tmeta{width:130px;flex-shrink:0}
+.tmeta-n{font-size:11px;font-weight:500;color:var(--t2);margin-bottom:4px}
+.tmeta-s{font-size:10px;font-weight:300;color:var(--t4);font-family:monospace;line-height:1.5}
+.ts-d{font-family:var(--D);font-size:64px;font-weight:900;letter-spacing:-.03em;line-height:.9}
+.ts-h1{font-family:var(--D);font-size:40px;font-weight:900;letter-spacing:-.03em;line-height:1}
+.ts-h2{font-family:var(--D);font-size:26px;font-weight:700;letter-spacing:-.02em}
+.ts-body{font-size:15px;font-weight:300;color:var(--t2);line-height:1.75;max-width:480px}
+.ts-ui{font-size:13px;font-weight:600;color:var(--t1)}
+.ts-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--t3)}
+.ts-code{font-family:monospace;font-size:12px;color:var(--or)}
+
+/* voice */
+.voice-c{background:var(--s1);border:1px solid var(--b);border-radius:var(--r2);padding:28px}
+.voice-w{font-family:var(--D);font-size:26px;font-weight:900;letter-spacing:-.02em;margin-bottom:6px}
+.voice-not{font-size:11px;color:var(--t4);margin-bottom:16px}
+.voice-not s{color:var(--t4)}
+.voice-body{font-size:13px;font-weight:300;color:var(--t2);line-height:1.7}
+.ex-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--b);border-radius:var(--r);overflow:hidden;margin-top:24px}
+.ex-c{background:var(--s1);padding:24px}
+.ex-tag{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.ex-tag.y{color:var(--gr)}
+.ex-tag.n{color:var(--t4)}
+.ex-txt{font-size:14px;font-weight:400;color:var(--t1);line-height:1.6}
+.ex-txt.n{color:var(--t4);text-decoration:line-through}
+
+/* components */
+.comp-wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+.comp-card{background:var(--s1);border:1px solid var(--b);border-radius:var(--r2);padding:28px}
+.comp-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:20px}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.ui-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:10px;font-family:var(--B);font-size:13px;font-weight:600;cursor:default}
+.ui-btn.p{background:var(--t1);color:var(--bg)}
+.ui-btn.s{background:var(--s3);color:var(--t1);border:1px solid var(--b2)}
+.ui-btn.g{background:transparent;color:var(--t2);border:1px solid var(--b)}
+.ui-btn.d{background:var(--re-d);color:var(--re);border:1px solid rgba(231,76,60,.2)}
+.ui-btn.sm{padding:7px 14px;font-size:12px;border-radius:8px}
+.badge-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.ubadge{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:100px;font-size:11px;font-weight:600}
+.ubdot{width:5px;height:5px;border-radius:50%}
+.ub-pass{background:var(--gr-d);color:var(--gr)}
+.ub-pass .ubdot{background:var(--gr)}
+.ub-fail{background:var(--re-d);color:var(--re)}
+.ub-fail .ubdot{background:var(--re)}
+.ub-warn{background:var(--ye-d);color:var(--ye)}
+.ub-warn .ubdot{background:var(--ye)}
+.ub-pend{background:rgba(255,255,255,.06);color:var(--t3)}
+.ub-pend .ubdot{background:var(--t4)}
+
+.insp-c{background:var(--s2);border:1px solid var(--b);border-radius:14px;overflow:hidden}
+.insp-top{padding:14px 18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--b)}
+.insp-ico{width:34px;height:34px;background:var(--s3);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.insp-ti{font-size:13px;font-weight:600;color:var(--t1)}
+.insp-me{font-size:10px;color:var(--t4);margin-top:2px}
+.insp-body{padding:14px 18px;display:flex;flex-direction:column;gap:8px}
+.insp-r{display:flex;justify-content:space-between;font-size:12px}
+.insp-r-l{color:var(--t3);font-weight:300}
+.insp-r-r{color:var(--t2);font-weight:500}
+.insp-bar{height:4px;background:var(--s3);border-radius:2px;overflow:hidden}
+.insp-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,#2ECC71,#27ae60)}
+
+.notif-c{background:var(--s2);border:1px solid var(--b);border-radius:14px;padding:14px;display:flex;gap:12px;margin-bottom:10px}
+.notif-ico{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.notif-ti{font-size:12px;font-weight:600;color:var(--t1);margin-bottom:3px}
+.notif-bo{font-size:11px;font-weight:300;color:var(--t2);line-height:1.5}
+.notif-tm{font-size:9px;color:var(--t4);margin-top:6px}
+
+/* brand screens */
+.brand-screens{display:flex;gap:20px;justify-content:center;align-items:flex-end;margin-top:48px}
+
+@media(max-width:900px){
+  .switcher{padding:0 16px}
+  .sw-nav-link{display:none}
+  .wrap{padding:0 20px}
+  .hero-inner{grid-template-columns:1fr;gap:40px}
+  .ph.sub{display:none}
+  .stats-row{grid-template-columns:1fr}
+  .stat{border-right:none;border-bottom:1px solid var(--b)}
+  .stat:last-child{border:none}
+  .bento{grid-template-columns:1fr}
+  .b-card.wide{grid-column:auto}
+  .georgia-grid,.brand-grid2,.comp-wrap,.ex-grid,.logo-showcase{grid-template-columns:1fr}
+  .dont-grid,.brand-grid3,.brand-grid4{grid-template-columns:1fr 1fr}
+  .color-hero{grid-template-columns:1fr}
+  .color-row2{grid-template-columns:1fr 1fr}
+  .brand-screens{flex-direction:column;align-items:center}
+  .cta-block{padding:48px 24px}
+}
+</style>
+</head>
+<body>
+
+<!-- SWITCHER -->
+<div class="switcher">
+  <span class="sw-logo">ARKO</span>
+  <div class="sw-tabs">
+    <button class="sw-tab on" onclick="show('landing')">Landing</button>
+    <button class="sw-tab" onclick="show('brand')">Brand</button>
+  </div>
+  <div class="sw-right">
+    <a class="sw-nav-link" href="#features">Features</a>
+    <a class="sw-nav-link" href="#compliance">Compliance</a>
+    <a class="sw-dl" href="#download">Download</a>
+  </div>
+</div>
+
+<!-- ════════════════════ LANDING ════════════════════ -->
+<div id="page-landing" class="page on">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="wrap">
+      <div class="hero-inner">
+        <div>
+          <div class="chip"><div class="chip-dot"></div>Construction Safety Platform</div>
+          <div class="hero-headline">
+            <div class="h-xl">Safety</div>
+            <div class="h-xl grad">simplified.</div>
+          </div>
+          <p class="body-lg" style="max-width:400px;margin-top:24px">Inspection checklists, incident reports, and compliance docs — built for Georgia's construction industry.</p>
+          <div class="hero-actions">
+            <a href="#download" class="btn-white">Get the App <span style="font-size:16px">→</span></a>
+            <a href="#features" class="btn-ghost">See Features</a>
+          </div>
+        </div>
+        <div class="phone-cluster">
+          <div class="ph sub l">
+            <div class="ps">
+              <div class="pi"></div>
+              <div class="pb">
+                <div class="pt">Inspection</div>
+                <div class="pn">Block A<br>Scaffold</div>
+                <div style="margin-top:8px">
+                  <div style="display:flex;justify-content:space-between;font-size:8px;color:var(--t3);margin-bottom:6px"><span>Progress</span><span>18/20</span></div>
+                  <div style="height:4px;background:rgba(255,255,255,.06);border-radius:2px"><div style="height:100%;width:90%;border-radius:2px;background:linear-gradient(90deg,#2ECC71,#27ae60)"></div></div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:0;margin-top:10px">
+                  <div class="pi-row"><div class="pi-icon">✓</div><div class="pi-n" style="color:var(--t3);text-decoration:line-through">Base plates</div></div>
+                  <div class="pi-row"><div class="pi-icon">✓</div><div class="pi-n" style="color:var(--t3);text-decoration:line-through">Guardrails</div></div>
+                  <div class="pi-row"><div class="pi-icon" style="background:rgba(255,255,255,.04);border:1px solid var(--b2);color:transparent">×</div><div class="pi-n">Toe boards</div></div>
+                </div>
+                <div style="background:var(--t1);border-radius:8px;padding:8px;font-size:9px;font-weight:700;text-align:center;color:var(--bg);margin-top:auto">Generate PDF</div>
+              </div>
+            </div>
+          </div>
+          <div class="ph main">
+            <div class="ps">
+              <div class="pi"></div>
+              <div class="pb">
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <div><div class="pt">Good morning</div><div class="pn" style="font-size:20px">Giorgi</div></div>
+                  <div style="width:28px;height:28px;background:rgba(255,255,255,.06);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px">🔔</div>
+                </div>
+                <div class="pc">
+                  <div class="pcl">Active Sites Today</div>
+                  <div class="pcv">4 <span>sites</span></div>
+                  <div class="pp">
+                    <div class="ppp on">3 Passed</div>
+                    <div class="ppp">1 Pending</div>
+                    <div class="ppp">0 Failed</div>
+                  </div>
+                </div>
+                <div class="psec">Inspections <span style="color:var(--t4)">View all</span></div>
+                <div>
+                  <div class="pi-row"><div class="pi-icon">🏗</div><div style="flex:1"><div class="pi-n">Block A — Scaffold</div><div class="pi-s">Rustavi · 2h</div></div><div class="pi-b bi-ok">Pass</div></div>
+                  <div class="pi-row"><div class="pi-icon">⛑</div><div style="flex:1"><div class="pi-n">Safety Briefing</div><div class="pi-s">8 signed</div></div><div class="pi-b bi-ok">Done</div></div>
+                  <div class="pi-row"><div class="pi-icon">🔧</div><div style="flex:1"><div class="pi-n">Block C — Harness</div><div class="pi-s">Overdue 1d</div></div><div class="pi-b bi-late">Late</div></div>
+                </div>
+                <div class="pnav">
+                  <div class="pni on">⌂</div><div class="pni">◎</div><div class="pni">≡</div><div class="pni">⊙</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ph sub r">
+            <div class="ps">
+              <div class="pi"></div>
+              <div class="pb">
+                <div class="pt">Incident Report</div>
+                <div class="pn" style="font-size:16px">New<br>Report</div>
+                <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+                  <div style="background:var(--s2);border:1px solid var(--b2);border-radius:8px;padding:8px 10px;font-size:9px;color:var(--t1)">Near Miss — Fall Risk</div>
+                  <div style="background:var(--s2);border:1px solid var(--b2);border-radius:8px;padding:8px 10px;font-size:9px;color:var(--t1)">Block C, Level 3</div>
+                  <div style="background:var(--s2);border:1px solid var(--b2);border-radius:8px;padding:8px 10px;font-size:9px;color:var(--t3);min-height:44px">Describe...</div>
+                </div>
+                <div style="display:flex;gap:6px;margin-top:auto">
+                  <div style="flex:1;background:var(--s3);border-radius:8px;padding:8px;font-size:8px;color:var(--t2);text-align:center">📷 Photo</div>
+                  <div style="flex:1;background:var(--t1);border-radius:8px;padding:8px;font-size:8px;color:var(--bg);font-weight:700;text-align:center">Submit</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="sep">
+
+  <!-- STATS -->
+  <div class="wrap"><div class="sec" style="padding:60px 0">
+    <div class="stats-row">
+      <div class="stat"><div class="stat-n">12+</div><div class="stat-l">Inspection types covered</div></div>
+      <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Georgian law aligned</div></div>
+      <div class="stat"><div class="stat-n">PDF</div><div class="stat-l">One-tap report export</div></div>
+    </div>
+  </div></div>
+
+  <hr class="sep">
+
+  <!-- FEATURES -->
+  <div id="features" class="wrap"><div class="sec">
+    <div class="chip"><div class="chip-dot"></div>Features</div>
+    <div class="h-lg" style="margin-top:16px">Everything a safety<br>inspector needs.</div>
+    <div class="bento">
+      <div class="b-card tall">
+        <div><div class="b-icon">🏗</div><div class="b-title">Scaffold & Harness Inspection</div><div class="b-text">GPS-stamped photos, instant pass/fail, structured checklists to Georgian standards.</div></div>
+        <div class="b-visual">
+          <div class="mini-list">
+            <div class="mini-item"><div class="mini-check mc-ok">✓</div><div class="mini-label done">Base plate condition</div><div class="mini-status" style="background:var(--gr-d);color:var(--gr);font-size:10px">OK</div></div>
+            <div class="mini-item"><div class="mini-check mc-ok">✓</div><div class="mini-label done">Guardrails 1.0m+</div><div class="mini-status" style="background:var(--gr-d);color:var(--gr);font-size:10px">OK</div></div>
+            <div class="mini-item"><div class="mini-check mc-no"></div><div class="mini-label">Toe boards present</div><div class="mini-status" style="background:rgba(255,255,255,.06);color:var(--t3);font-size:10px">—</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="b-card tall wide">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <div><div class="b-icon">⚠️</div><div class="b-title">Incident Reporting</div><div class="b-text">Log incidents in under 2 minutes. Aligned with Georgian labor law. Ready for submission.</div></div>
+          <div><div class="b-icon">📄</div><div class="b-title">PDF Reports</div><div class="b-text">One tap. Professional report generated instantly. Archive, share, or submit for audit.</div></div>
+        </div>
+        <div class="b-visual">
+          <div class="pdf-mini" style="width:100%">
+            <div class="pdf-top"><div class="pdf-logo">ARKO</div><div class="pdf-badge">Approved</div></div>
+            <div class="pdf-line"></div><div class="pdf-line short"></div><div class="pdf-line xshort"></div>
+          </div>
+        </div>
+      </div>
+      <div class="b-card">
+        <div class="b-icon">📅</div><div class="b-title">Recurring Calendar</div><div class="b-text">Automated inspection cycles with smart reminders. Never miss a scheduled check.</div>
+        <div class="prog-wrap">
+          <div class="prog-label"><span>April compliance</span><span style="color:var(--gr)">92%</span></div>
+          <div class="prog-track"><div class="prog-fill" style="width:92%"></div></div>
+        </div>
+      </div>
+      <div class="b-card">
+        <div class="b-icon">📍</div><div class="b-title">GPS Photo Tagging</div><div class="b-text">Every photo stamped with exact location and timestamp. Irrefutable evidence for audits.</div>
+      </div>
+      <div class="b-card">
+        <div class="b-icon">⛑️</div><div class="b-title">Safety Briefings</div><div class="b-text">Digital sign-off, attendance tracking. Full audit trail for every session and every worker.</div>
+      </div>
+    </div>
+  </div></div>
+
+  <hr class="sep">
+
+  <!-- GEORGIA -->
+  <div id="compliance" class="wrap"><div class="sec">
+    <div class="chip"><div class="chip-dot"></div>Built for Georgia</div>
+    <div class="h-lg" style="margin-top:16px">Local law.<br>Global precision.</div>
+    <div class="georgia-grid" style="margin-top:48px">
+      <div>
+        <div class="feat-list">
+          <div class="feat-item"><div class="feat-num">01</div><div><div class="feat-item-title">Full Georgian Language</div><div class="feat-item-text">Every form, every report, every notification — in Georgian. No translation layer.</div></div></div>
+          <div class="feat-item"><div class="feat-num">02</div><div><div class="feat-item-title">Labor Code Compliance</div><div class="feat-item-text">Incident forms follow exact Georgian regulatory format. Submit directly to authorities.</div></div></div>
+          <div class="feat-item"><div class="feat-num">03</div><div><div class="feat-item-title">Works Fully Offline</div><div class="feat-item-text">No signal needed on site. Syncs automatically when you're back online.</div></div></div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:start">
+        <div class="geo-card"><div class="geo-num grad">ყ</div><div class="geo-label">Georgian interface — every word</div></div>
+        <div class="geo-card" style="background:var(--s2)"><div class="geo-num">0ms</div><div class="geo-label">Offline-first. Zero latency on site</div></div>
+        <div class="geo-card" style="grid-column:span 2"><div class="geo-num grad">PDF</div><div class="geo-label">Audit-ready reports in one tap, every time</div></div>
+      </div>
+    </div>
+  </div></div>
+
+  <hr class="sep">
+
+  <!-- CTA -->
+  <div id="download" class="wrap"><div class="sec">
+    <div class="cta-block">
+      <div class="cta-glow"></div>
+      <div class="chip" style="position:relative;z-index:1"><div class="chip-dot"></div>Download</div>
+      <div class="h-lg" style="margin-top:16px;position:relative;z-index:1">Start your first<br><span class="grad">inspection today.</span></div>
+      <p class="body-sm" style="margin-top:16px;max-width:340px;margin-left:auto;margin-right:auto;position:relative;z-index:1">iOS & Android. Built for Georgian construction safety professionals.</p>
+      <div class="cta-actions" style="position:relative;z-index:1">
+        <a href="#" class="store-btn"><div class="sb-icon">🍎</div><div><div class="sb-small">Download on the</div><div class="sb-big">App Store</div></div></a>
+        <a href="#" class="store-btn"><div class="sb-icon">▶</div><div><div class="sb-small">Get it on</div><div class="sb-big">Google Play</div></div></a>
+      </div>
+    </div>
+  </div></div>
+
+  <hr class="sep">
+  <div class="wrap"><div class="footer">
+    <div class="footer-inner">
+      <span class="footer-logo">ARKO</span>
+      <ul class="footer-links"><li><a href="#">Privacy</a></li><li><a href="#">Contact</a></li><li><a href="#">Georgian</a></li></ul>
+      <span class="footer-copy">© 2025 Arko. Tbilisi, Georgia.</span>
+    </div>
+  </div></div>
+
+</div><!-- /landing -->
+
+
+<!-- ════════════════════ BRAND ════════════════════ -->
+<div id="page-brand" class="page">
+
+  <!-- COVER -->
+  <div class="brand-cover">
+    <div class="bc-grid"></div>
+    <div class="bc-glow"></div>
+    <div class="bc-title"><span class="grad">ARK</span>O</div>
+    <div class="bc-sub">Brand Guidelines · v1.0 · 2025</div>
+    <div class="bc-meta">
+      <div class="bc-tag">Platform <span>iOS + Android</span></div>
+      <div class="bc-tag">Market <span>B2B Safety</span></div>
+      <div class="bc-tag">Base <span>Tbilisi, Georgia</span></div>
+      <div class="bc-tag">Version <span>2.0</span></div>
+    </div>
+  </div>
+
+  <hr class="sep">
+
+  <!-- 01 BRAND -->
+  <div class="wrap"><div class="brand-sec">
+    <div class="chip"><div class="chip-dot"></div>01 — Brand</div>
+    <div class="h-lg" style="margin-top:16px">What is <span style="color:var(--t3)">Arko?</span></div>
+    <div class="brand-grid2" style="margin-top:32px;align-items:start">
+      <div class="bcard"><div class="bcard-p">
+        <div class="label">Positioning</div>
+        <p style="font-size:20px;font-weight:600;color:var(--t1);line-height:1.4;letter-spacing:-.01em">The safety tool that works the way a <span style="color:var(--t3)">site works.</span></p>
+        <p class="body-sm" style="margin-top:16px">Built for Georgian construction safety inspectors — not back-office teams. Fast, offline-capable, generates compliant docs in seconds.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px">
+          <div style="background:var(--s3);border:1px solid var(--b);border-radius:100px;padding:5px 14px;font-size:12px;color:var(--t2)">Fast</div>
+          <div style="background:var(--s3);border:1px solid var(--b);border-radius:100px;padding:5px 14px;font-size:12px;color:var(--t2)">Offline-first</div>
+          <div style="background:var(--s3);border:1px solid var(--b);border-radius:100px;padding:5px 14px;font-size:12px;color:var(--t2)">Georgian law</div>
+          <div style="background:rgba(232,98,47,.12);border:1px solid rgba(232,98,47,.25);border-radius:100px;padding:5px 14px;font-size:12px;color:var(--or)">Safety-critical</div>
+        </div>
+      </div></div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="bcard"><div class="bcard-p">
+          <div class="label">Name Origin</div>
+          <p class="body-sm"><strong style="color:var(--t1)">ARKO</strong> — from <em>arc</em>: the structural form that bears load through geometry, not mass. A bridge. A vault. Precision that protects.</p>
+        </div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="bcard"><div class="bcard-p"><div class="label">Mission</div><p class="body-sm">Safer construction sites through better documentation tools.</p></div></div>
+          <div class="bcard"><div class="bcard-p"><div class="label">Audience</div><p class="body-sm">Safety inspectors and construction companies in Georgia.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+
+  <hr class="sep">
+
+  <!-- 02 LOGO -->
+  <div class="wrap"><div class="brand-sec">
+    <div class="chip"><div class="chip-dot"></div>02 — Logo</div>
+    <div class="h-lg" style="margin-top:16px">The <span style="color:var(--t3)">wordmark.</span></div>
+    <div class="logo-showcase">
+      <div class="lc d"><div class="lc-wm light-txt">ARKO</div><div class="lc-cap dk-cap">On Dark · Primary</div></div>
+      <div class="lc w"><div class="lc-wm dark-txt">ARKO</div><div class="lc-cap lt-cap">On White</div></div>
+      <div class="lc g"><div class="lc-wm light-txt">ARKO</div><div class="lc-cap dk-cap">On Surface</div></div>
+      <div class="lc p"><div class="lc-wm dark-txt" style="color:#1A1A1A">ARKO</div><div class="lc-cap lt-cap">On Paper</div></div>
+    </div>
+    <div class="brand-grid4" style="margin-top:20px">
+      <div class="bcard"><div class="bcard-p"><div class="label">Typeface</div><p class="body-sm">Unbounded 900. No substitutes. The weight is intentional.</p></div></div>
+      <div class="bcard"><div class="bcard-p"><div class="label">Tracking</div><p class="body-sm">+40 letter-spacing. Never compress or expand beyond ±10%.</p></div></div>
+      <div class="bcard"><div class="bcard-p"><div class="label">Clear Space</div><p class="body-sm">Minimum padding equal to cap-height of "A" on all sides.</p></div></div>
+      <div class="bcard"><div class="bcard-p"><div class="label">Min Size</div><p class="body-sm">16px digital · 8mm print. Below this, use the icon mark.</p></div></div>
+    </div>
+    <div style="margin-top:20px">
+      <div class="label" style="color:var(--t4);margin-bottom:12px">Never do this</div>
+      <div class="dont-grid">
+        <div class="dont-c"><div style="font-family:var(--D);font-size:22px;font-weight:400;color:var(--t1)">ARKO</div><div class="dont-lbl">Wrong weight</div></div>
+        <div class="dont-c"><div style="font-family:var(--D);font-size:22px;font-weight:900;color:var(--or)">ARKO</div><div class="dont-lbl">Color fill</div></div>
+        <div class="dont-c"><div style="font-family:var(--D);font-size:22px;font-weight:900;letter-spacing:0;color:var(--t1)">ARKO</div><div class="dont-lbl">No tracking</div></div>
+        <div class="dont-c"><div style="font-family:var(--D);font-size:22px;font-weight:900;color:var(--t1);transform:scaleX(1.5)">ARKO</div><div class="dont-lbl">Stretched</div></div>
+      </div>
+    </div>
+  </div></div>
+
+  <hr class="sep">
+
+  <!-- 03 COLOR -->
+  <div class="wrap"><div class="brand-sec">
+    <div class="chip"><div class="chip-dot"></div>03 — Color</div>
+    <div class="h-lg" style="margin-top:16px">Dark first. <span style="color:var(--t3)">Always.</span></div>
+    <div class="color-hero">
+      <div class="csw" style="background:#0A0A0A"><div class="csw-role" style="color:rgba(255,255,255,.25)">Primary Background</div><div class="csw-name" style="color:#fff">Ink</div><div class="csw-hex" style="color:rgba(255,255,255,.3)">#0A0A0A</div></div>
+      <div class="csw" style="background:#fff;border:1px solid #eee"><div class="csw-role" style="color:rgba(0,0,0,.3)">Primary Button</div><div class="csw-name" style="color:#000">White</div><div class="csw-hex" style="color:rgba(0,0,0,.3)">#FFFFFF</div></div>
+      <div class="csw" style="background:#F4F2EE;border:1px solid #e0ddd8"><div class="csw-role" style="color:rgba(0,0,0,.3)">Light Background</div><div class="csw-name" style="color:#000">Paper</div><div class="csw-hex" style="color:rgba(0,0,0,.3)">#F4F2EE</div></div>
+    </div>
+    <div class="color-row2">
+      <div class="csw" style="background:#1E1E1E"><div class="csw-name" style="color:rgba(255,255,255,.7);font-size:12px">Surface</div><div class="csw-hex" style="color:rgba(255,255,255,.3)">#1E1E1E</div></div>
+      <div class="csw" style="background:#6B6B6B"><div class="csw-name" style="color:rgba(255,255,255,.9);font-size:12px">Ash</div><div class="csw-hex" style="color:rgba(255,255,255,.4)">#6B6B6B</div></div>
+      <div class="csw" style="background:#E8622F"><div class="csw-name" style="color:#fff;font-size:12px">Signal</div><div class="csw-hex" style="color:rgba(255,255,255,.5)">#E8622F · UI only</div></div>
+      <div class="csw" style="background:#2ECC71"><div class="csw-name" style="color:#fff;font-size:12px">Pass</div><div class="csw-hex" style="color:rgba(255,255,255,.5)">#2ECC71 · Status</div></div>
+    </div>
+    <table class="token-tbl" style="margin-top:24px">
+      <tr><th>Token</th><th>Value</th><th>Usage</th></tr>
+      <tr><td>--color-bg</td><td><span class="tdot" style="background:#0A0A0A;border:1px solid rgba(255,255,255,.1)"></span>#0A0A0A</td><td>App background, dark sections</td></tr>
+      <tr><td>--color-surface</td><td><span class="tdot" style="background:#1E1E1E"></span>#1E1E1E</td><td>Cards, modals, inputs</td></tr>
+      <tr><td>--color-border</td><td><span class="tdot" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2)"></span>rgba(255,255,255,0.07)</td><td>All borders and dividers</td></tr>
+      <tr><td>--color-primary</td><td><span class="tdot" style="background:#fff"></span>#FFFFFF</td><td>Primary CTA buttons only</td></tr>
+      <tr><td>--color-signal</td><td><span class="tdot" style="background:#E8622F"></span>#E8622F</td><td>Warnings — never in brand comms</td></tr>
+      <tr><td>--color-pass</td><td><span class="tdot" style="background:#2ECC71"></span>#2ECC71</td><td>Passed inspections, success</td></tr>
+      <tr><td>--color-warn</td><td><span class="tdot" style="background:#F5A623"></span>#F5A623</td><td>Overdue items, caution</td></tr>
+    </table>
+  </div></div>
+
+  <hr class="sep">
+
+  <!-- 04 TYPE -->
+  <div class="wrap"><div class="brand-sec">
+    <div class="chip"><div class="chip-dot"></div>04 — Typography</div>
+    <div class="h-lg" style="margin-top:16px">Two fonts. <span style="color:var(--t3)">One system.</span></div>
+    <div class="bcard" style="margin-top:32px">
+      <div class="type-spec" style="padding:0 28px">
+        <div class="type-row"><div class="tmeta"><div class="tmeta-n">Display</div><div class="tmeta-s">Unbounded 900<br>-0.03em</div></div><div class="ts-d grad">ARKO</div></div>
+        <div class="type-row"><div class="tmeta"><div class="tmeta-n">Heading 1</div><div class="tmeta-s">Unbounded 900<br>40px / 1.0</div></div><div class="ts-h1">Construction Safety</div></div>
+        <div class="type-row"><div class="tmeta"><div class="tmeta-n">Heading 2</div><div class="tmeta-s">Unbounded 700<br>26px / 1.1</div></div><div class="ts-h2">Every site. Every inspection.</div></div>
+        <div class="type-row"><div class="tmeta"><div class="tmeta-n">Body</div><div class="tmeta-s">Jakarta Sans 300<br>15px / 1.75</div></div><div class="ts-body">Built for Georgian construction safety inspectors. Turns complex regulatory requirements into clear, fast workflows anyone on site can follow.</div></div>
+        <div class="type-row"><div class="tmeta"><div class="tmeta-n">UI</div><div class="tmeta-s">Jakarta Sans 600<br>13px</div></div><div class="ts-ui">Scaffold Inspection — Block A — Pass</div></div>
+        <div class="type-row"><div class="tmeta"><div class="tmeta-n">Label</div><div class="tmeta-s">Jakarta Sans 600<br>10px / +120</div></div><div class="ts-label">Construction Safety Platform</div></div>
+        <div class="type-row" style="border:none"><div class="tmeta"><div class="tmeta-n">Code</div><div class="tmeta-s">Monospace<br>12px</div></div><div class="ts-code">--color-pass: #2ECC71</div></div>
+      </div>
+    </div>
+  </div></div>
+
+  <hr class="sep">
+
+  <!-- 05 VOICE -->
+  <div class="wrap"><div class="brand-sec">
+    <div class="chip"><div class="chip-dot"></div>05 — Voice</div>
+    <div class="h-lg" style="margin-top:16px">How Arko <span style="color:var(--t3)">speaks.</span></div>
+    <div class="brand-grid3" style="margin-top:32px">
+      <div class="voice-c"><div class="voice-w">Direct</div><div class="voice-not">not <s>corporate</s></div><div class="voice-body">No hedging. Every word earns its place. Short over long. Inspectors are professionals — speak to them as such.</div></div>
+      <div class="voice-c"><div class="voice-w">Confident</div><div class="voice-not">not <s>arrogant</s></div><div class="voice-body">We know what we do. No hype, zero exclamation marks. The product speaks for itself.</div></div>
+      <div class="voice-c"><div class="voice-w">Precise</div><div class="voice-not">not <s>technical</s></div><div class="voice-body">Exact language mirrors the product. Technical terms only when they're the right term.</div></div>
+    </div>
+    <div class="ex-grid" style="margin-top:20px">
+      <div class="ex-c"><div class="ex-tag y">✓ Arko says</div><div class="ex-txt">"Inspection complete. Report generated."</div></div>
+      <div class="ex-c"><div class="ex-tag n">✗ Not this</div><div class="ex-txt n">"Great job! Your amazing inspection report is ready to share! 🎉"</div></div>
+      <div class="ex-c"><div class="ex-tag y">✓ Arko says</div><div class="ex-txt">"3 items require review before approval."</div></div>
+      <div class="ex-c"><div class="ex-tag n">✗ Not this</div><div class="ex-txt n">"Oops! Looks like some things need your attention!"</div></div>
+    </div>
+  </div></div>
+
+  <hr class="sep">
+
+  <!-- 06 COMPONENTS -->
+  <div class="wrap"><div class="brand-sec">
+    <div class="chip"><div class="chip-dot"></div>06 — Components</div>
+    <div class="h-lg" style="margin-top:16px">UI <span style="color:var(--t3)">building blocks.</span></div>
+    <div class="comp-wrap">
+      <div class="comp-card">
+        <div class="comp-label">Buttons</div>
+        <div class="btn-row"><div class="ui-btn p" style="font-size:14px;padding:13px 28px;border-radius:12px">Get the App</div></div>
+        <div class="btn-row"><div class="ui-btn p">Primary</div><div class="ui-btn s">Secondary</div><div class="ui-btn g">Ghost</div></div>
+        <div class="btn-row"><div class="ui-btn p sm">Confirm</div><div class="ui-btn s sm">Cancel</div><div class="ui-btn d sm">Delete</div></div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-label">Status Badges</div>
+        <div class="badge-row">
+          <div class="ubadge ub-pass"><div class="ubdot"></div>Pass</div>
+          <div class="ubadge ub-fail"><div class="ubdot"></div>Failed</div>
+          <div class="ubadge ub-warn"><div class="ubdot"></div>Overdue</div>
+          <div class="ubadge ub-pend"><div class="ubdot"></div>Pending</div>
+        </div>
+        <div class="comp-label" style="margin-top:16px">Inspection Card</div>
+        <div class="insp-c">
+          <div class="insp-top"><div class="insp-ico">🏗</div><div style="flex:1"><div class="insp-ti">Block A — Scaffolding</div><div class="insp-me">Rustavi Site · Due in 2h</div></div><div class="ubadge ub-pass" style="font-size:10px"><div class="ubdot"></div>Pass</div></div>
+          <div class="insp-body"><div class="insp-r"><span class="insp-r-l">Completed</span><span class="insp-r-r">18 / 20</span></div><div class="insp-bar"><div class="insp-fill" style="width:90%"></div></div><div class="insp-r"><span class="insp-r-l">Inspector</span><span class="insp-r-r">G. Beridze</span></div></div>
+        </div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-label">Notifications</div>
+        <div class="notif-c"><div class="notif-ico" style="background:var(--ye-d);border:1px solid rgba(245,166,35,.2)">⚠️</div><div><div class="notif-ti">Inspection Overdue</div><div class="notif-bo">Block C harness check is 1 day overdue. Work must pause.</div><div class="notif-tm">2 minutes ago</div></div></div>
+        <div class="notif-c" style="border-color:rgba(46,204,113,.2);margin-bottom:0"><div class="notif-ico" style="background:var(--gr-d);border:1px solid rgba(46,204,113,.25)">✓</div><div><div class="notif-ti">Report Generated</div><div class="notif-bo">Block A scaffold inspection PDF is ready to share.</div><div class="notif-tm">Just now</div></div></div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-label">App Icons</div>
+        <div style="display:flex;gap:16px;align-items:center">
+          <div style="width:88px;height:88px;background:#0A0A0A;border:1px solid rgba(255,255,255,.08);border-radius:22px;display:flex;align-items:center;justify-content:center"><span style="font-family:var(--D);font-size:24px;font-weight:900;color:#fff">ARKO</span></div>
+          <div style="width:60px;height:60px;background:#0A0A0A;border:1px solid rgba(255,255,255,.08);border-radius:14px;display:flex;align-items:center;justify-content:center"><span style="font-family:var(--D);font-size:16px;font-weight:900;color:#fff">AR</span></div>
+          <div style="width:40px;height:40px;background:#0A0A0A;border:1px solid rgba(255,255,255,.08);border-radius:10px;display:flex;align-items:center;justify-content:center"><span style="font-family:var(--D);font-size:11px;font-weight:900;color:#fff">A</span></div>
+          <div style="font-size:11px;color:var(--t3);line-height:1.8">88px App Store<br>60px Home Screen<br>40px Spotlight</div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+
+  <hr class="sep">
+  <div class="wrap"><div class="footer">
+    <div class="footer-inner">
+      <span class="footer-logo">ARKO</span>
+      <span class="footer-copy">Brand Guidelines v1.0 · © 2025 Arko · Tbilisi, Georgia · Internal use only</span>
+    </div>
+  </div></div>
+
+</div><!-- /brand -->
+
+<script>
+function show(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.sw-tab').forEach(t=>t.classList.remove('on'));
+  document.getElementById('page-'+id).classList.add('on');
+  event.currentTarget.classList.add('on');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
