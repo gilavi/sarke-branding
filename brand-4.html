@@ -8,142 +8,246 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0A0A0A; --s1:#111; --s2:#171717; --s3:#202020;
-  --b:rgba(255,255,255,0.07); --b2:rgba(255,255,255,0.12);
-  --t1:#F5F5F0; --t2:rgba(245,245,240,0.5); --t3:rgba(245,245,240,0.22);
-  --ac:#C8F544; --ac-dim:rgba(200,245,68,0.1);
-  --D:'Space Grotesk',sans-serif; --M:'Space Mono',monospace;
+  --bg:#0A0A0A;--s1:#111;--s2:#171717;--s3:#202020;
+  --b:rgba(255,255,255,0.07);--b2:rgba(255,255,255,0.12);
+  --t1:#F5F5F0;--t2:rgba(245,245,240,0.5);--t3:rgba(245,245,240,0.22);
+  --ac:#C8F544;--ac-dim:rgba(200,245,68,0.1);
+  --D:'Space Grotesk',sans-serif;--M:'Space Mono',monospace;
 }
 body{font-family:var(--D);background:var(--bg);color:var(--t1);-webkit-font-smoothing:antialiased;min-height:100vh;padding:48px}
-.label{font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--t3);margin-bottom:20px;font-family:var(--M)}
-.row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px}
+.sec-label{font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--t3);margin-bottom:20px;font-family:var(--M)}
+.row{display:flex;gap:12px;flex-wrap:wrap}
 .col{flex:1;min-width:0}
 hr{border:none;border-top:1px solid var(--b);margin:48px 0}
 
-/* Wordmark */
 .wordmark{font-family:var(--D);font-size:88px;font-weight:700;letter-spacing:-0.04em;color:var(--t1);line-height:.88;margin-bottom:12px}
 .wordmark span{color:var(--ac)}
-.tagline{font-family:var(--M);font-size:11px;font-weight:400;color:var(--t3);letter-spacing:0.1em;text-transform:uppercase}
+.tagline{font-family:var(--M);font-size:11px;color:var(--t3);letter-spacing:0.1em;text-transform:uppercase}
 
-/* Palette */
-.swatch{border-radius:6px;height:72px;margin-bottom:8px}
-.swatch-label{font-size:11px;color:var(--t3);font-family:var(--M)}
-.swatch-name{font-size:12px;color:var(--t2);margin-bottom:2px}
+.swatch{border-radius:6px;height:64px;margin-bottom:8px}
+.sw-name{font-size:12px;color:var(--t2);margin-bottom:2px}
+.sw-val{font-size:11px;color:var(--t3);font-family:var(--M)}
 
-/* Type */
-.type-xl{font-family:var(--D);font-size:64px;font-weight:700;line-height:.92;letter-spacing:-0.04em;color:var(--t1);margin-bottom:16px}
+.type-xl{font-family:var(--D);font-size:60px;font-weight:700;line-height:.92;letter-spacing:-0.04em;color:var(--t1);margin-bottom:12px}
 .type-xl span{color:var(--ac)}
-.type-mono{font-family:var(--M);font-size:12px;color:var(--t3);line-height:1.8;margin-bottom:8px}
-.type-body{font-size:15px;font-weight:300;color:var(--t2);line-height:1.75;max-width:460px;margin-bottom:8px}
+.type-body{font-size:14px;font-weight:300;color:var(--t2);line-height:1.75;max-width:440px;margin-bottom:6px}
 .font-spec{font-size:11px;color:var(--t3);font-family:var(--M);margin-top:4px}
 
-/* Components */
-.btn-a{display:inline-flex;align-items:center;gap:8px;background:var(--ac);color:#0A0A0A;font-family:var(--D);font-size:13px;font-weight:700;padding:11px 22px;border-radius:6px;margin-right:8px;margin-bottom:8px;letter-spacing:-0.01em}
-.btn-b{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--t2);font-family:var(--D);font-size:13px;font-weight:500;padding:11px 20px;border-radius:6px;border:1px solid var(--b2);margin-bottom:8px}
-.btn-c{display:inline-flex;align-items:center;gap:8px;background:var(--s2);color:var(--t1);font-family:var(--M);font-size:12px;font-weight:700;padding:11px 20px;border-radius:6px;border:1px solid var(--b);margin-bottom:8px;letter-spacing:0.04em}
-.mono-tag{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--b2);border-radius:4px;padding:4px 10px;font-size:10px;font-weight:700;font-family:var(--M);color:var(--t3);margin-right:6px;margin-bottom:6px;letter-spacing:0.06em;text-transform:uppercase}
-.mono-tag.on{border-color:var(--ac);color:var(--ac);background:var(--ac-dim)}
-.card-ex{background:var(--s1);border:1px solid var(--b);border-radius:8px;padding:20px;margin-bottom:8px}
-.card-ex-label{font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--t3);margin-bottom:8px;font-weight:700;font-family:var(--M)}
-.card-ex-val{font-family:var(--D);font-size:34px;font-weight:700;letter-spacing:-0.03em;color:var(--t1)}
-.card-ex-sub{font-size:11px;color:var(--t3);margin-top:4px;font-family:var(--M)}
+.uc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.uc-card{background:var(--s1);border:1px solid var(--b);border-radius:14px;overflow:hidden}
+.uc-label{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--t3);padding:14px 18px 10px;border-bottom:1px solid var(--b);font-family:var(--M)}
+.uc-body{padding:20px}
+
+/* OFFICE */
+.letterhead{background:#111;border:1px solid rgba(200,245,68,0.15);border-radius:8px;padding:22px}
+.lh-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.lh-logo{font-family:var(--D);font-size:18px;font-weight:700;letter-spacing:-0.03em;color:#F5F5F0}
+.lh-logo span{color:#C8F544}
+.lh-stamp{font-family:var(--M);font-size:8px;color:rgba(200,245,68,0.4);letter-spacing:0.08em;text-align:right;line-height:1.6}
+.lh-line{height:1px;background:rgba(200,245,68,0.15);margin-bottom:14px}
+.lh-body{font-size:10px;line-height:1.8;color:rgba(245,245,240,0.35);font-family:var(--M)}
+.lh-body strong{color:rgba(245,245,240,0.65);font-weight:700}
+.biz-cards{display:flex;gap:10px;margin-top:14px}
+.biz-card{flex:1;background:#0A0A0A;border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px;aspect-ratio:1.75;display:flex;flex-direction:column}
+.bc-logo{font-family:var(--D);font-size:13px;font-weight:700;letter-spacing:-0.03em;color:#F5F5F0}
+.bc-logo span{color:#C8F544}
+.bc-name{font-family:var(--M);font-size:8px;color:rgba(245,245,240,0.35);margin-top:auto;letter-spacing:0.04em}
+.bc-role{font-family:var(--M);font-size:7px;color:rgba(245,245,240,0.2);margin-top:2px;letter-spacing:0.04em}
+.biz-card.lt{background:#C8F544;border-color:#C8F544}
+.biz-card.lt .bc-logo,.biz-card.lt .bc-logo span{color:#0A0A0A}
+.biz-card.lt .bc-name,.biz-card.lt .bc-role{color:rgba(0,0,0,0.5)}
+
+/* APP */
+.phone{width:200px;height:400px;background:#141414;border-radius:36px;padding:9px;border:1px solid rgba(255,255,255,0.1);box-shadow:0 40px 80px rgba(0,0,0,0.7);margin:0 auto}
+.ps{width:100%;height:100%;background:#0A0A0A;border-radius:28px;overflow:hidden;display:flex;flex-direction:column}
+.pi{width:72px;height:20px;background:#000;border-radius:100px;margin:8px auto 0;flex-shrink:0}
+.papp-nav{display:flex;justify-content:space-between;align-items:center;padding:12px 16px 8px;flex-shrink:0}
+.papp-logo{font-family:var(--D);font-size:13px;font-weight:700;letter-spacing:-0.03em;color:#F5F5F0}
+.papp-logo span{color:#C8F544}
+.papp-icon{width:28px;height:28px;border-radius:8px;background:rgba(200,245,68,0.08);border:1px solid rgba(200,245,68,0.2);display:flex;align-items:center;justify-content:center;font-size:12px}
+.papp-body{flex:1;padding:8px 14px 14px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.papp-greeting{font-family:var(--M);font-size:8px;color:rgba(245,245,240,0.25);letter-spacing:0.08em}
+.papp-title{font-family:var(--D);font-size:20px;font-weight:700;letter-spacing:-0.03em;color:#F5F5F0;line-height:1.05;margin-top:2px}
+.papp-card{background:#111;border:1px solid rgba(200,245,68,0.15);border-radius:12px;padding:12px}
+.papp-card-lbl{font-family:var(--M);font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(245,245,240,0.25)}
+.papp-card-val{font-family:var(--D);font-size:28px;font-weight:700;letter-spacing:-0.03em;color:#C8F544;margin-top:4px}
+.papp-list{display:flex;flex-direction:column;gap:5px}
+.papp-item{display:flex;align-items:center;gap:8px;padding:7px 10px;background:rgba(255,255,255,0.03);border-radius:7px;border:1px solid rgba(255,255,255,0.04)}
+.papp-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.papp-text{font-family:var(--M);font-size:8px;color:rgba(245,245,240,0.35);flex:1;letter-spacing:0.03em}
+.papp-tag{font-family:var(--M);font-size:7px;padding:2px 6px;border-radius:3px;font-weight:700;letter-spacing:0.06em}
+
+/* WEB */
+.web-shell{background:#0A0A0A;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.08)}
+.web-bar{height:32px;background:#080808;display:flex;align-items:center;padding:0 12px;gap:6px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.web-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.1)}
+.web-url{flex:1;height:18px;background:rgba(255,255,255,0.04);border-radius:4px;margin:0 8px;display:flex;align-items:center;padding:0 8px}
+.web-url-text{font-size:9px;color:rgba(255,255,255,0.2);font-family:monospace}
+.web-nav{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;border-bottom:1px solid rgba(200,245,68,0.08)}
+.web-nav-logo{font-family:var(--D);font-size:14px;font-weight:700;letter-spacing:-0.03em;color:#F5F5F0}
+.web-nav-logo span{color:#C8F544}
+.web-nav-links{display:flex;gap:16px}
+.web-nav-link{font-family:var(--M);font-size:9px;color:rgba(245,245,240,0.3);letter-spacing:0.04em}
+.web-nav-cta{font-family:var(--D);font-size:10px;font-weight:700;color:#0A0A0A;background:#C8F544;padding:5px 14px;border-radius:5px}
+.web-hero{padding:28px 20px}
+.web-mono-tag{font-family:var(--M);font-size:9px;color:rgba(200,245,68,0.5);letter-spacing:0.08em;margin-bottom:12px}
+.web-hero-h{font-family:var(--D);font-size:32px;font-weight:700;letter-spacing:-0.04em;color:#F5F5F0;line-height:.92;margin-bottom:10px}
+.web-hero-h span{color:#C8F544}
+.web-hero-sub{font-family:var(--M);font-size:9px;color:rgba(245,245,240,0.3);line-height:1.8;margin-bottom:14px;letter-spacing:0.02em}
+.web-hero-btns{display:flex;gap:8px}
+.web-btn-a{font-family:var(--D);font-size:10px;font-weight:700;color:#0A0A0A;background:#C8F544;padding:7px 18px;border-radius:5px}
+.web-btn-b{font-family:var(--M);font-size:9px;color:rgba(245,245,240,0.35);padding:7px 14px;border-radius:5px;border:1px solid rgba(255,255,255,0.08);letter-spacing:0.04em}
+
+/* PDF */
+.pdf-shell{background:#111;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.08)}
+.pdf-cover{background:#0A0A0A;padding:28px;min-height:220px;display:flex;flex-direction:column;border-bottom:3px solid #C8F544}
+.pdf-cover-mono{font-family:var(--M);font-size:8px;color:rgba(200,245,68,0.4);letter-spacing:0.1em;margin-bottom:16px}
+.pdf-cover-logo{font-family:var(--D);font-size:16px;font-weight:700;letter-spacing:-0.03em;color:#F5F5F0;margin-bottom:4px}
+.pdf-cover-logo span{color:#C8F544}
+.pdf-cover-title{font-family:var(--D);font-size:24px;font-weight:700;letter-spacing:-0.03em;color:#F5F5F0;line-height:.95;margin-top:auto;margin-bottom:8px}
+.pdf-cover-title span{color:#C8F544}
+.pdf-cover-meta{font-family:var(--M);font-size:8px;color:rgba(245,245,240,0.25);letter-spacing:0.08em}
+.pdf-inner{padding:16px 20px;display:flex;flex-direction:column;gap:8px}
+.pdf-row{display:flex;align-items:center;gap:12px}
+.pdf-num{font-family:var(--M);font-size:10px;font-weight:700;color:rgba(200,245,68,0.2);width:28px;flex-shrink:0}
+.pdf-line{flex:1;height:8px;background:rgba(255,255,255,0.04);border-radius:2px}
+.pdf-page-num{font-family:var(--M);font-size:9px;color:rgba(255,255,255,0.15);text-align:right;margin-top:4px}
 </style>
 </head>
 <body>
 
-<p class="label">// 01 — Wordmark</p>
+<p class="sec-label">// 01 — Wordmark</p>
 <div class="wordmark">ARKO<span>_</span></div>
 <div class="tagline">// Construction Safety Intelligence</div>
 
 <hr>
 
-<p class="label">// 02 — Colour Palette</p>
-<div class="row">
-  <div class="col">
-    <div class="swatch" style="background:#0A0A0A;border:1px solid rgba(255,255,255,0.1)"></div>
-    <div class="swatch-name">Background</div>
-    <div class="swatch-label">#0A0A0A</div>
-  </div>
-  <div class="col">
-    <div class="swatch" style="background:#171717"></div>
-    <div class="swatch-name">Surface</div>
-    <div class="swatch-label">#171717</div>
-  </div>
-  <div class="col">
-    <div class="swatch" style="background:#202020"></div>
-    <div class="swatch-name">Elevated</div>
-    <div class="swatch-label">#202020</div>
-  </div>
-  <div class="col">
-    <div class="swatch" style="background:#C8F544"></div>
-    <div class="swatch-name">Lime</div>
-    <div class="swatch-label">#C8F544</div>
-  </div>
-  <div class="col">
-    <div class="swatch" style="background:#F5F5F0"></div>
-    <div class="swatch-name">Off-white</div>
-    <div class="swatch-label">#F5F5F0</div>
-  </div>
-  <div class="col">
-    <div class="swatch" style="background:#FF4444"></div>
-    <div class="swatch-name">Alert</div>
-    <div class="swatch-label">#FF4444</div>
-  </div>
+<p class="sec-label">// 02 — Palette</p>
+<div class="row" style="margin-bottom:48px">
+  <div class="col"><div class="swatch" style="background:#0A0A0A;border:1px solid rgba(255,255,255,0.1)"></div><div class="sw-name">Background</div><div class="sw-val">#0A0A0A</div></div>
+  <div class="col"><div class="swatch" style="background:#171717"></div><div class="sw-name">Surface</div><div class="sw-val">#171717</div></div>
+  <div class="col"><div class="swatch" style="background:#202020"></div><div class="sw-name">Elevated</div><div class="sw-val">#202020</div></div>
+  <div class="col"><div class="swatch" style="background:#C8F544"></div><div class="sw-name">Lime</div><div class="sw-val">#C8F544</div></div>
+  <div class="col"><div class="swatch" style="background:#F5F5F0"></div><div class="sw-name">Off-white</div><div class="sw-val">#F5F5F0</div></div>
+  <div class="col"><div class="swatch" style="background:#FF4444"></div><div class="sw-name">Alert</div><div class="sw-val">#FF4444</div></div>
 </div>
 
 <hr>
 
-<p class="label">// 03 — Typography</p>
-<div style="margin-bottom:32px">
-  <div class="type-xl">ZERO<br>HARM<span>.</span></div>
-  <div class="type-body">Arko brings construction safety intelligence to every team, every project, every day — with precision that matters.</div>
-  <div class="type-mono">$ font-family: 'Space Grotesk' 700 // Display<br>$ font-size: clamp(48px, 8vw, 96px) // Responsive</div>
-  <div class="font-spec">// Display: Space Grotesk 700 · UI: Space Grotesk 400</div>
-</div>
-<div>
-  <div style="font-size:15px;font-weight:500;color:var(--t1);margin-bottom:4px">Space Grotesk Medium — Body text</div>
-  <div style="font-size:13px;font-weight:300;color:var(--t2);margin-bottom:4px">Space Grotesk Light — Secondary</div>
-  <div style="font-size:11px;font-weight:700;color:var(--t3);letter-spacing:0.1em;text-transform:uppercase;font-family:var(--M)">SPACE_MONO 700 — CODE LABELS</div>
-  <div class="font-spec">// Mono: Space Mono 400/700 — labels, data, tags</div>
-</div>
+<p class="sec-label">// 03 — Typography</p>
+<div class="type-xl">ZERO<br>HARM<span>.</span></div>
+<div class="type-body">Arko brings construction safety intelligence to every team — with precision that matters.</div>
+<div class="font-spec" style="margin-bottom:48px">Space Grotesk 700 — Display · Space Mono 400/700 — Labels & data</div>
 
 <hr>
 
-<p class="label">// 04 — Components</p>
-<div style="margin-bottom:24px">
-  <span class="btn-a">Get started →</span>
-  <span class="btn-b">Learn more</span>
-  <span class="btn-c">$ DASHBOARD</span>
-</div>
-<div style="margin-bottom:24px">
-  <span class="mono-tag on">● LIVE</span>
-  <span class="mono-tag">ZONE_A</span>
-  <span class="mono-tag">ZONE_B</span>
-  <span class="mono-tag">ZONE_C</span>
-</div>
-<div class="row">
-  <div class="col">
-    <div class="card-ex">
-      <div class="card-ex-label">// sites_monitored</div>
-      <div class="card-ex-val">2,847</div>
-      <div class="card-ex-sub">+12 this_week</div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card-ex">
-      <div class="card-ex-label">// risk_score</div>
-      <div class="card-ex-val" style="color:#C8F544">98.4%</div>
-      <div class="card-ex-sub">STATUS: excellent</div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card-ex">
-      <div class="card-ex-label">// open_incidents</div>
-      <div class="card-ex-val" style="color:#FF4444">3</div>
-      <div class="card-ex-sub">PRIORITY: high</div>
-    </div>
-  </div>
-</div>
+<p class="sec-label">// 04 — Use Cases</p>
+<div class="uc-grid">
 
+  <div class="uc-card">
+    <div class="uc-label">Office</div>
+    <div class="uc-body">
+      <div class="letterhead">
+        <div class="lh-top">
+          <div class="lh-logo">ARKO<span>_</span></div>
+          <div class="lh-stamp">REF: SAF-2026-0042<br>CLASS: CONFIDENTIAL<br>DATE: 2026-05-06</div>
+        </div>
+        <div class="lh-line"></div>
+        <div class="lh-body"><strong>SITE_SAFETY_REPORT</strong><br>project: Tower Block A, Tbilisi<br>phase: Structural — Level 12<br><br>findings: 3 observations logged. 0 critical incidents...</div>
+      </div>
+      <div class="biz-cards">
+        <div class="biz-card">
+          <div class="bc-logo">ARKO<span>_</span></div>
+          <div class="bc-name">GIORGI_KHELADZE</div>
+          <div class="bc-role">HEAD_OF_SAFETY</div>
+        </div>
+        <div class="biz-card lt">
+          <div class="bc-logo">ARKO_</div>
+          <div class="bc-name">giorgi@arko.ge</div>
+          <div class="bc-role">+995 555 000 000</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="uc-card">
+    <div class="uc-label">App</div>
+    <div class="uc-body" style="display:flex;justify-content:center">
+      <div class="phone">
+        <div class="ps">
+          <div class="pi"></div>
+          <div class="papp-nav">
+            <div class="papp-logo">ARKO<span>_</span></div>
+            <div class="papp-icon" style="font-size:10px;color:#C8F544">⚡</div>
+          </div>
+          <div class="papp-body">
+            <div class="papp-greeting">// GOOD_MORNING</div>
+            <div class="papp-title">SITE<br>OVERVIEW</div>
+            <div class="papp-card">
+              <div class="papp-card-lbl">RISK_SCORE</div>
+              <div class="papp-card-val">98.4%</div>
+            </div>
+            <div class="papp-list">
+              <div class="papp-item"><div class="papp-dot" style="background:#C8F544"></div><div class="papp-text">ZONE_A</div><div class="papp-tag" style="background:rgba(200,245,68,0.1);color:#C8F544">CLR</div></div>
+              <div class="papp-item"><div class="papp-dot" style="background:#FF4444"></div><div class="papp-text">ZONE_B</div><div class="papp-tag" style="background:rgba(255,68,68,0.1);color:#FF4444">ERR</div></div>
+              <div class="papp-item"><div class="papp-dot" style="background:#C8F544"></div><div class="papp-text">ZONE_C</div><div class="papp-tag" style="background:rgba(200,245,68,0.1);color:#C8F544">CLR</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="uc-card">
+    <div class="uc-label">Web</div>
+    <div class="uc-body" style="padding:0">
+      <div class="web-shell">
+        <div class="web-bar">
+          <div class="web-dot"></div><div class="web-dot"></div><div class="web-dot"></div>
+          <div class="web-url"><span class="web-url-text">arko.ge</span></div>
+        </div>
+        <div class="web-nav">
+          <div class="web-nav-logo">ARKO<span>_</span></div>
+          <div class="web-nav-links">
+            <span class="web-nav-link">PLATFORM</span>
+            <span class="web-nav-link">SAFETY</span>
+            <span class="web-nav-link">PRICING</span>
+          </div>
+          <div class="web-nav-cta">$ START</div>
+        </div>
+        <div class="web-hero">
+          <div class="web-mono-tag">// CONSTRUCTION_SAFETY_AI v2.6.0</div>
+          <div class="web-hero-h">ZERO<br><span>HARM.</span></div>
+          <div class="web-hero-sub">$ arko --monitor all-sites --realtime<br>// 2,847 sites · 98.4% score · 0 incidents</div>
+          <div class="web-hero-btns">
+            <div class="web-btn-a">$ GET_STARTED</div>
+            <div class="web-btn-b">--learn-more</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="uc-card">
+    <div class="uc-label">PDF</div>
+    <div class="uc-body" style="padding:0">
+      <div class="pdf-shell">
+        <div class="pdf-cover">
+          <div class="pdf-cover-mono">// DOC_TYPE: ANNUAL_REPORT · YEAR: 2026</div>
+          <div class="pdf-cover-logo">ARKO<span>_</span></div>
+          <div class="pdf-cover-title">ANNUAL<br><span>SAFETY</span><br>REPORT</div>
+          <div class="pdf-cover-meta">CONFIDENTIAL · ARKO.GE · 2026-05-06</div>
+        </div>
+        <div class="pdf-inner">
+          <div class="pdf-row"><div class="pdf-num">01</div><div class="pdf-line"></div></div>
+          <div class="pdf-row"><div class="pdf-num">02</div><div class="pdf-line" style="max-width:80%"></div></div>
+          <div class="pdf-row"><div class="pdf-num">03</div><div class="pdf-line" style="max-width:60%"></div></div>
+          <div class="pdf-page-num">PG_01 / 24</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 </body>
 </html>

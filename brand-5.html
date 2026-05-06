@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand 05 — Warm</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0E0C0A;--s1:#141210;--s2:#1C1916;--s3:#242018;
+  --b:rgba(255,240,210,0.07);--b2:rgba(255,240,210,0.13);
+  --t1:#F7F0E6;--t2:rgba(247,240,230,0.5);--t3:rgba(247,240,230,0.25);
+  --ac:#D4873A;--ac2:#F2B872;--ac-dim:rgba(212,135,58,0.12);
+  --D:'Fraunces',Georgia,serif;--B:'Inter',system-ui,sans-serif;
+}
+body{font-family:var(--B);background:var(--bg);color:var(--t1);-webkit-font-smoothing:antialiased;min-height:100vh;padding:48px}
+.sec-label{font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--t3);margin-bottom:20px}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.col{flex:1;min-width:0}
+hr{border:none;border-top:1px solid var(--b);margin:48px 0}
+
+.wordmark{font-family:var(--D);font-size:96px;font-weight:300;letter-spacing:-0.01em;color:var(--t1);line-height:.9;margin-bottom:12px}
+.wordmark em{font-style:italic;color:var(--ac)}
+.tagline{font-size:13px;font-weight:300;color:var(--t3);letter-spacing:0.06em}
+
+.swatch{border-radius:10px;height:64px;margin-bottom:8px}
+.sw-name{font-size:12px;color:var(--t2);margin-bottom:2px}
+.sw-val{font-size:11px;color:var(--t3);font-family:monospace}
+
+.type-xl{font-family:var(--D);font-size:64px;font-weight:300;line-height:.94;color:var(--t1);margin-bottom:12px}
+.type-xl em{font-style:italic;color:var(--ac)}
+.type-body{font-size:14px;font-weight:300;color:var(--t2);line-height:1.8;max-width:440px;margin-bottom:6px}
+.font-spec{font-size:11px;color:var(--t3);font-family:monospace;margin-top:4px}
+
+.uc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.uc-card{background:var(--s1);border:1px solid var(--b);border-radius:14px;overflow:hidden}
+.uc-label{font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--t3);padding:14px 18px 10px;border-bottom:1px solid var(--b)}
+.uc-body{padding:20px}
+
+/* OFFICE */
+.letterhead{background:#FBF6EE;border-radius:8px;padding:22px}
+.lh-logo{font-family:var(--D);font-size:22px;font-weight:300;color:#1A1410;margin-bottom:4px}
+.lh-logo em{font-style:italic;color:#D4873A}
+.lh-rule{height:1px;background:linear-gradient(90deg,#D4873A,transparent);margin-bottom:16px}
+.lh-body{font-size:10px;line-height:1.8;color:rgba(0,0,0,0.4)}
+.lh-body strong{color:rgba(0,0,0,0.7);font-weight:500}
+.biz-cards{display:flex;gap:10px;margin-top:14px}
+.biz-card{flex:1;background:#0E0C0A;border-radius:8px;padding:14px;aspect-ratio:1.75;display:flex;flex-direction:column;border:1px solid rgba(255,240,210,0.06)}
+.bc-logo{font-family:var(--D);font-size:15px;font-weight:300;color:var(--t1)}
+.bc-logo em{font-style:italic;color:var(--ac)}
+.bc-name{font-size:9px;font-weight:400;color:var(--t2);margin-top:auto}
+.bc-role{font-size:8px;font-weight:300;color:var(--t3);margin-top:1px}
+.biz-card.lt{background:#D4873A}
+.biz-card.lt .bc-logo,.biz-card.lt .bc-logo em{color:#fff}
+.biz-card.lt .bc-name,.biz-card.lt .bc-role{color:rgba(255,255,255,0.7)}
+
+/* APP */
+.phone{width:200px;height:400px;background:#1C1916;border-radius:36px;padding:10px;border:1px solid rgba(255,240,210,0.08);box-shadow:0 40px 80px rgba(0,0,0,0.7);margin:0 auto}
+.ps{width:100%;height:100%;background:#0E0C0A;border-radius:27px;overflow:hidden;display:flex;flex-direction:column}
+.pi{width:72px;height:20px;background:#000;border-radius:100px;margin:8px auto 0;flex-shrink:0}
+.papp-nav{display:flex;justify-content:space-between;align-items:center;padding:12px 16px 8px;flex-shrink:0}
+.papp-logo{font-family:var(--D);font-size:16px;font-weight:300;color:var(--t1)}
+.papp-logo em{font-style:italic;color:var(--ac)}
+.papp-icon{width:28px;height:28px;border-radius:8px;background:rgba(212,135,58,0.1);border:1px solid rgba(212,135,58,0.2);display:flex;align-items:center;justify-content:center;font-size:12px}
+.papp-body{flex:1;padding:8px 14px 14px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.papp-greeting{font-size:9px;color:var(--t3);font-weight:300}
+.papp-title{font-family:var(--D);font-size:22px;font-weight:300;color:var(--t1);line-height:1.05}
+.papp-title em{font-style:italic;color:var(--ac)}
+.papp-card{background:linear-gradient(135deg,#D4873A,#F2B872);border-radius:14px;padding:14px}
+.papp-card-lbl{font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:500}
+.papp-card-val{font-family:var(--D);font-size:28px;font-weight:300;color:#fff;margin-top:4px}
+.papp-list{display:flex;flex-direction:column;gap:6px}
+.papp-item{display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,240,210,0.03);border-radius:9px}
+.papp-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.papp-text{font-size:9px;color:var(--t2);flex:1;font-weight:300}
+.papp-tag{font-size:8px;padding:2px 7px;border-radius:4px;font-weight:500}
+
+/* WEB */
+.web-shell{background:var(--s1);border-radius:10px;overflow:hidden;border:1px solid var(--b)}
+.web-bar{height:32px;background:var(--bg);display:flex;align-items:center;padding:0 12px;gap:6px;border-bottom:1px solid var(--b)}
+.web-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.08)}
+.web-url{flex:1;height:18px;background:rgba(255,255,255,0.04);border-radius:4px;margin:0 8px;display:flex;align-items:center;padding:0 8px}
+.web-url-text{font-size:9px;color:rgba(255,255,255,0.2);font-family:monospace}
+.web-nav{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--b)}
+.web-nav-logo{font-family:var(--D);font-size:18px;font-weight:300;color:var(--t1)}
+.web-nav-logo em{font-style:italic;color:var(--ac)}
+.web-nav-links{display:flex;gap:16px}
+.web-nav-link{font-size:10px;color:var(--t3);font-weight:300}
+.web-nav-cta{font-size:10px;font-weight:500;color:var(--bg);background:var(--ac);padding:5px 14px;border-radius:6px}
+.web-hero{padding:28px 20px}
+.web-eyebrow{font-size:9px;font-weight:400;color:var(--t3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px}
+.web-hero-h{font-family:var(--D);font-size:34px;font-weight:300;color:var(--t1);line-height:1;margin-bottom:10px}
+.web-hero-h em{font-style:italic;color:var(--ac)}
+.web-hero-sub{font-size:10px;font-weight:300;color:var(--t3);line-height:1.75;margin-bottom:14px}
+.web-hero-btns{display:flex;gap:8px}
+.web-btn-a{font-size:10px;font-weight:500;color:#fff;background:var(--ac);padding:7px 18px;border-radius:6px}
+.web-btn-b{font-size:10px;font-weight:300;color:var(--t2);padding:7px 14px;border-radius:6px;border:1px solid var(--b2)}
+
+/* PDF */
+.pdf-shell{background:var(--s2);border-radius:8px;overflow:hidden;border:1px solid var(--b)}
+.pdf-cover{background:#FBF6EE;padding:28px;min-height:220px;display:flex;flex-direction:column;position:relative}
+.pdf-cover-logo{font-family:var(--D);font-size:18px;font-weight:300;color:#1A1410;margin-bottom:4px}
+.pdf-cover-logo em{font-style:italic;color:#D4873A}
+.pdf-cover-sub{font-size:9px;color:rgba(0,0,0,0.3);margin-bottom:auto;letter-spacing:0.04em}
+.pdf-cover-title{font-family:var(--D);font-size:26px;font-weight:300;color:#1A1410;line-height:1.1;margin-bottom:8px;margin-top:24px}
+.pdf-cover-title em{font-style:italic;color:#D4873A}
+.pdf-cover-rule{width:40px;height:2px;background:#D4873A;border-radius:1px;margin-bottom:8px}
+.pdf-cover-meta{font-size:9px;color:rgba(0,0,0,0.3);letter-spacing:0.04em}
+.pdf-inner{padding:16px 20px;display:flex;flex-direction:column;gap:8px}
+.pdf-row{display:flex;align-items:center;gap:12px}
+.pdf-num{font-family:var(--D);font-size:18px;font-weight:300;color:rgba(247,240,230,0.1);width:28px;flex-shrink:0;font-style:italic}
+.pdf-line{flex:1;height:8px;background:rgba(255,255,255,0.04);border-radius:3px}
+.pdf-page-num{font-size:9px;color:rgba(255,255,255,0.12);font-family:monospace;text-align:right;margin-top:4px}
+</style>
+</head>
+<body>
+
+<p class="sec-label">01 — Wordmark</p>
+<div class="wordmark">Ark<em>o.</em></div>
+<div class="tagline">Construction Safety Intelligence</div>
+
+<hr>
+
+<p class="sec-label">02 — Palette</p>
+<div class="row" style="margin-bottom:48px">
+  <div class="col"><div class="swatch" style="background:#0E0C0A;border:1px solid rgba(255,240,210,0.1)"></div><div class="sw-name">Background</div><div class="sw-val">#0E0C0A</div></div>
+  <div class="col"><div class="swatch" style="background:#1C1916"></div><div class="sw-name">Surface</div><div class="sw-val">#1C1916</div></div>
+  <div class="col"><div class="swatch" style="background:#D4873A"></div><div class="sw-name">Amber</div><div class="sw-val">#D4873A</div></div>
+  <div class="col"><div class="swatch" style="background:#F2B872"></div><div class="sw-name">Amber Light</div><div class="sw-val">#F2B872</div></div>
+  <div class="col"><div class="swatch" style="background:#F7F0E6"></div><div class="sw-name">Warm white</div><div class="sw-val">#F7F0E6</div></div>
+  <div class="col"><div class="swatch" style="background:#FBF6EE"></div><div class="sw-name">Cream</div><div class="sw-val">#FBF6EE</div></div>
+</div>
+
+<hr>
+
+<p class="sec-label">03 — Typography</p>
+<div class="type-xl">Built for<br><em>people.</em></div>
+<div class="type-body">Arko brings construction safety intelligence to every team — with precision that matters.</div>
+<div class="font-spec" style="margin-bottom:48px">Fraunces 300/300i — Display · Inter 300/400/500 — UI</div>
+
+<hr>
+
+<p class="sec-label">04 — Use Cases</p>
+<div class="uc-grid">
+
+  <div class="uc-card">
+    <div class="uc-label">Office</div>
+    <div class="uc-body">
+      <div class="letterhead">
+        <div class="lh-logo">Ark<em>o.</em></div>
+        <div class="lh-rule"></div>
+        <div class="lh-body"><strong>Site Safety Report</strong><br>Project: Tower Block A, Tbilisi<br>Date: 06 May 2026<br><br>This report summarises compliance findings for the current construction phase...</div>
+      </div>
+      <div class="biz-cards">
+        <div class="biz-card">
+          <div class="bc-logo">Ark<em>o.</em></div>
+          <div class="bc-name">Giorgi Kheladze</div>
+          <div class="bc-role">Head of Safety</div>
+        </div>
+        <div class="biz-card lt">
+          <div class="bc-logo">Arko.</div>
+          <div class="bc-name">giorgi@arko.ge</div>
+          <div class="bc-role">+995 555 000 000</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="uc-card">
+    <div class="uc-label">App</div>
+    <div class="uc-body" style="display:flex;justify-content:center">
+      <div class="phone">
+        <div class="ps">
+          <div class="pi"></div>
+          <div class="papp-nav">
+            <div class="papp-logo">Ark<em>o.</em></div>
+            <div class="papp-icon">🌿</div>
+          </div>
+          <div class="papp-body">
+            <div class="papp-greeting">Good morning</div>
+            <div class="papp-title">Site <em>Overview</em></div>
+            <div class="papp-card">
+              <div class="papp-card-lbl">Risk Index</div>
+              <div class="papp-card-val">98.4%</div>
+            </div>
+            <div class="papp-list">
+              <div class="papp-item"><div class="papp-dot" style="background:#6BCF7F"></div><div class="papp-text">Zone A — Clear</div><div class="papp-tag" style="background:rgba(107,207,127,0.1);color:#6BCF7F">OK</div></div>
+              <div class="papp-item"><div class="papp-dot" style="background:#D4873A"></div><div class="papp-text">Zone B — Review</div><div class="papp-tag" style="background:rgba(212,135,58,0.1);color:#D4873A">!</div></div>
+              <div class="papp-item"><div class="papp-dot" style="background:#6BCF7F"></div><div class="papp-text">Zone C — Clear</div><div class="papp-tag" style="background:rgba(107,207,127,0.1);color:#6BCF7F">OK</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="uc-card">
+    <div class="uc-label">Web</div>
+    <div class="uc-body" style="padding:0">
+      <div class="web-shell">
+        <div class="web-bar">
+          <div class="web-dot"></div><div class="web-dot"></div><div class="web-dot"></div>
+          <div class="web-url"><span class="web-url-text">arko.ge</span></div>
+        </div>
+        <div class="web-nav">
+          <div class="web-nav-logo">Ark<em>o.</em></div>
+          <div class="web-nav-links">
+            <span class="web-nav-link">Platform</span>
+            <span class="web-nav-link">Safety</span>
+            <span class="web-nav-link">Pricing</span>
+          </div>
+          <div class="web-nav-cta">Get started</div>
+        </div>
+        <div class="web-hero">
+          <div class="web-eyebrow">Construction Safety AI</div>
+          <div class="web-hero-h">Built for <em>people.</em></div>
+          <div class="web-hero-sub">Arko monitors every site, every shift —<br>so your team gets home safe.</div>
+          <div class="web-hero-btns">
+            <div class="web-btn-a">Get started →</div>
+            <div class="web-btn-b">Learn more</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="uc-card">
+    <div class="uc-label">PDF</div>
+    <div class="uc-body" style="padding:0">
+      <div class="pdf-shell">
+        <div class="pdf-cover">
+          <div class="pdf-cover-logo">Ark<em>o.</em></div>
+          <div class="pdf-cover-sub">Safety Intelligence Platform</div>
+          <div class="pdf-cover-rule"></div>
+          <div class="pdf-cover-title">Annual<br><em>Safety Report</em><br>2026</div>
+          <div class="pdf-cover-meta">Confidential · arko.ge</div>
+        </div>
+        <div class="pdf-inner">
+          <div class="pdf-row"><div class="pdf-num">i</div><div class="pdf-line"></div></div>
+          <div class="pdf-row"><div class="pdf-num">ii</div><div class="pdf-line" style="max-width:80%"></div></div>
+          <div class="pdf-row"><div class="pdf-num">iii</div><div class="pdf-line" style="max-width:60%"></div></div>
+          <div class="pdf-page-num">— 1 —</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
