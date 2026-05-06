@@ -30,26 +30,29 @@ body{font-family:var(--D);background:var(--bg);color:var(--t1);-webkit-font-smoo
 .uc-label{font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--t3);padding:12px 18px 10px;border-bottom:1px solid var(--b)}
 .uc-body{padding:18px}
 
-/* OFFICE */
-.letterhead{background:#fff;border-radius:6px;padding:20px;border:1px solid rgba(0,0,0,0.06)}
-.lh-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
-.lh-logo{font-family:var(--D);font-size:18px;font-weight:300;letter-spacing:-0.01em;color:#111}
-.lh-logo span{color:#E8622F}
-.lh-meta{font-family:var(--M);font-size:7px;color:rgba(0,0,0,0.28);text-align:right;line-height:1.7}
-.lh-rule{height:1px;background:rgba(0,0,0,0.08);margin-bottom:12px}
-.lh-body{font-size:10px;line-height:1.8;color:rgba(0,0,0,0.42)}
-.lh-body strong{color:rgba(0,0,0,0.68);font-weight:500}
-.biz-cards{display:flex;gap:10px;margin-top:12px}
-.biz-card{flex:1;background:#111110;border-radius:6px;padding:12px;aspect-ratio:1.75;display:flex;flex-direction:column}
-.bc-logo{font-family:var(--D);font-size:14px;font-weight:300;color:#F4F2EE;letter-spacing:-0.01em}
-.bc-logo span{color:#E8622F}
-.bc-name{font-size:8px;font-weight:400;color:rgba(244,242,238,0.38);margin-top:auto}
-.bc-role{font-size:7px;font-weight:300;color:rgba(244,242,238,0.22);margin-top:1px}
-.biz-card.lt{background:#fff;border:1px solid rgba(0,0,0,0.08)}
-.biz-card.lt .bc-logo{color:#111110}
-.biz-card.lt .bc-logo span{color:#E8622F}
-.biz-card.lt .bc-name{color:rgba(17,17,16,0.42)}
-.biz-card.lt .bc-role{color:rgba(17,17,16,0.25)}
+/* ── OFFICE: physical site render ── */
+.site-scene{display:flex;flex-direction:column;gap:12px}
+.site-board{background:#fff;border-radius:6px;overflow:hidden;border:1px solid rgba(0,0,0,0.1)}
+.site-board-top{background:#111110;padding:14px 18px;display:flex;align-items:center;justify-content:space-between}
+.site-board-logo{font-family:var(--D);font-size:20px;font-weight:300;letter-spacing:-0.02em;color:#F4F2EE}
+.site-board-logo span{color:#E8622F}
+.site-board-badge{font-family:var(--M);font-size:7px;color:rgba(244,242,238,0.45);letter-spacing:0.08em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.15);padding:3px 8px;border-radius:2px}
+.site-board-body{padding:14px 18px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.site-board-field{border-bottom:1px solid rgba(0,0,0,0.07);padding-bottom:8px}
+.site-board-label{font-family:var(--M);font-size:7px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(17,17,16,0.32);margin-bottom:3px}
+.site-board-val{font-family:var(--D);font-size:12px;font-weight:300;color:#111110;letter-spacing:-0.01em}
+.site-board-full{grid-column:1/-1}
+.site-board-warning{background:#E8622F;padding:10px 18px;display:flex;align-items:center;gap:10px}
+.site-board-warn-icon{font-size:16px}
+.site-board-warn-text{font-family:var(--M);font-size:8px;color:rgba(255,255,255,0.8);letter-spacing:0.02em}
+.site-board-warn-text strong{color:#fff;font-weight:500}
+.ppe-row{display:flex;gap:10px}
+.ppe-item{flex:1;background:var(--s1);border:1px solid var(--b);border-radius:6px;padding:14px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.ppe-icon{font-size:28px;line-height:1}
+.ppe-label-wrap{text-align:center}
+.ppe-name{font-family:var(--M);font-size:8px;color:var(--t2);margin-bottom:2px;letter-spacing:0.04em}
+.ppe-brand{font-family:var(--D);font-size:13px;font-weight:300;color:var(--t1);letter-spacing:-0.01em}
+.ppe-brand span{color:var(--ac)}
 
 /* APP */
 .phone{width:180px;height:360px;background:#E4E0D8;border-radius:32px;padding:9px;border:1px solid rgba(0,0,0,0.12);box-shadow:0 20px 50px rgba(0,0,0,0.12);margin:0 auto}
@@ -98,20 +101,32 @@ body{font-family:var(--D);background:var(--bg);color:var(--t1);-webkit-font-smoo
 .web-btn-a{font-size:9px;font-weight:500;color:#F4F2EE;background:#111110;padding:6px 14px;border-radius:4px}
 .web-btn-b{font-size:9px;font-weight:300;color:rgba(17,17,16,0.38);padding:6px 12px;border-radius:4px;border:1px solid rgba(0,0,0,0.1)}
 
-/* PDF */
-.pdf{background:#fff;border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,0.08)}
-.pdf-cover{background:#111110;padding:24px;display:flex;flex-direction:column;min-height:180px}
-.pdf-index{font-family:var(--M);font-size:7px;color:rgba(244,242,238,0.18);letter-spacing:0.1em;margin-bottom:16px}
-.pdf-logo{font-family:var(--D);font-size:15px;font-weight:300;color:#F4F2EE;letter-spacing:-0.01em}
-.pdf-logo span{color:#E8622F}
-.pdf-title{font-family:var(--D);font-size:22px;font-weight:300;color:#F4F2EE;line-height:1.05;letter-spacing:-0.02em;margin-top:auto;margin-bottom:6px}
-.pdf-title em{font-style:italic;color:rgba(244,242,238,0.32)}
-.pdf-meta{font-family:var(--M);font-size:7px;color:rgba(244,242,238,0.2);letter-spacing:0.06em}
-.pdf-body{padding:14px 18px;display:flex;flex-direction:column;gap:7px}
-.pdf-row{display:flex;align-items:center;gap:10px}
-.pdf-num{font-family:var(--M);font-size:9px;color:rgba(17,17,16,0.15);width:24px;flex-shrink:0}
-.pdf-line{flex:1;height:7px;background:rgba(0,0,0,0.05);border-radius:2px}
-.pdf-pg{font-family:var(--M);font-size:8px;color:rgba(17,17,16,0.2);text-align:right;margin-top:3px}
+/* ── PDF: full document ── */
+.pdf-doc{background:#fff;border-radius:4px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.15);font-family:var(--D);border:1px solid rgba(0,0,0,0.08)}
+.pdf-doc-header{padding:16px 20px 12px;border-bottom:1px solid rgba(0,0,0,0.08);display:flex;justify-content:space-between;align-items:flex-start}
+.pdf-doc-logo{font-family:var(--D);font-size:16px;font-weight:300;letter-spacing:-0.02em;color:#111110}
+.pdf-doc-logo span{color:#E8622F}
+.pdf-doc-meta{text-align:right}
+.pdf-doc-meta-title{font-family:var(--M);font-size:8px;font-weight:500;color:#111110;letter-spacing:0.02em}
+.pdf-doc-meta-sub{font-family:var(--M);font-size:7px;color:rgba(17,17,16,0.35);margin-top:2px}
+.pdf-doc-cover-band{background:#111110;padding:18px 20px}
+.pdf-doc-cover-eyebrow{font-family:var(--M);font-size:7px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(244,242,238,0.3);margin-bottom:6px}
+.pdf-doc-cover-title{font-family:var(--D);font-size:22px;font-weight:300;letter-spacing:-0.02em;line-height:.95;color:#F4F2EE}
+.pdf-doc-cover-title em{font-style:italic;color:rgba(244,242,238,0.38)}
+.pdf-doc-body{padding:16px 20px;display:flex;flex-direction:column;gap:12px}
+.pdf-section-title{font-family:var(--M);font-size:7px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:rgba(17,17,16,0.32);border-bottom:1px solid rgba(0,0,0,0.08);padding-bottom:4px;margin-bottom:7px}
+.pdf-para{font-size:9px;color:rgba(17,17,16,0.6);line-height:1.8;font-weight:300}
+.pdf-table{width:100%;border-collapse:collapse;font-size:8.5px}
+.pdf-table th{text-align:left;font-family:var(--M);font-size:7px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(17,17,16,0.32);font-weight:500;padding:4px 7px;border-bottom:1px solid rgba(0,0,0,0.08)}
+.pdf-table td{padding:5px 7px;color:rgba(17,17,16,0.6);border-bottom:1px solid rgba(0,0,0,0.04)}
+.pdf-table tr:last-child td{border-bottom:none}
+.pdf-td-val{font-weight:500;color:#111110}
+.pdf-td-good{color:#3D9E6B}
+.pdf-td-warn{color:#E8622F}
+.pdf-doc-footer{padding:8px 20px;border-top:1px solid rgba(0,0,0,0.08);display:flex;justify-content:space-between;align-items:center;background:#EDEAE4}
+.pdf-footer-brand{font-family:var(--D);font-size:10px;font-weight:300;letter-spacing:-0.01em;color:rgba(17,17,16,0.3)}
+.pdf-footer-brand span{color:#E8622F}
+.pdf-footer-pg{font-family:var(--M);font-size:8px;color:rgba(17,17,16,0.25)}
 
 hr{border:none;border-top:1px solid var(--b);margin:28px 0}
 .sec-label{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--t3);margin-bottom:16px;font-weight:500}
@@ -146,17 +161,28 @@ hr{border:none;border-top:1px solid var(--b);margin:28px 0}
   <div class="uc-card">
     <div class="uc-label">Office</div>
     <div class="uc-body">
-      <div class="letterhead">
-        <div class="lh-top">
-          <div class="lh-logo">Arko<span>.</span></div>
-          <div class="lh-meta">arko.ge<br>Safety Intelligence<br>Tbilisi, Georgia</div>
+      <div class="site-scene">
+        <div class="site-board">
+          <div class="site-board-top">
+            <div class="site-board-logo">Arko<span>.</span></div>
+            <div class="site-board-badge">ISO 45001 Certified</div>
+          </div>
+          <div class="site-board-body">
+            <div class="site-board-field"><div class="site-board-label">Project</div><div class="site-board-val">Tower Block A, Tbilisi</div></div>
+            <div class="site-board-field"><div class="site-board-label">Site Manager</div><div class="site-board-val">G. Kheladze</div></div>
+            <div class="site-board-field"><div class="site-board-label">Phase</div><div class="site-board-val">Structural — Level 12</div></div>
+            <div class="site-board-field"><div class="site-board-label">Days Without Incident</div><div class="site-board-val" style="font-size:18px;font-family:var(--D);font-weight:300;letter-spacing:-0.02em">247</div></div>
+          </div>
+          <div class="site-board-warning">
+            <div class="site-board-warn-icon">⚠</div>
+            <div class="site-board-warn-text"><strong>PPE required beyond this point.</strong> Hard hat, hi-vis vest and safety boots mandatory.</div>
+          </div>
         </div>
-        <div class="lh-rule"></div>
-        <div class="lh-body"><strong>Site Safety Report</strong><br>Project: Tower Block A, Tbilisi<br>Date: 06 May 2026<br><br>This report summarises compliance findings for the current phase...</div>
-      </div>
-      <div class="biz-cards">
-        <div class="biz-card"><div class="bc-logo">Arko<span>.</span></div><div class="bc-name">Giorgi Kheladze</div><div class="bc-role">Head of Safety</div></div>
-        <div class="biz-card lt"><div class="bc-logo">Arko<span>.</span></div><div class="bc-name">giorgi@arko.ge</div><div class="bc-role">+995 555 000 000</div></div>
+        <div class="ppe-row">
+          <div class="ppe-item"><div class="ppe-icon">🪖</div><div class="ppe-label-wrap"><div class="ppe-name">Hard hat</div><div class="ppe-brand">Arko<span>.</span></div></div></div>
+          <div class="ppe-item"><div class="ppe-icon">🦺</div><div class="ppe-label-wrap"><div class="ppe-name">Hi-vis vest</div><div class="ppe-brand">Arko<span>.</span></div></div></div>
+          <div class="ppe-item"><div class="ppe-icon">🚧</div><div class="ppe-label-wrap"><div class="ppe-name">Site hoarding</div><div class="ppe-brand">Arko<span>.</span></div></div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -211,18 +237,38 @@ hr{border:none;border-top:1px solid var(--b);margin:28px 0}
   <div class="uc-card">
     <div class="uc-label">PDF</div>
     <div class="uc-body" style="padding:0">
-      <div class="pdf">
-        <div class="pdf-cover">
-          <div class="pdf-index">DOC — 2026 — ANNUAL — SAFETY</div>
-          <div class="pdf-logo">Arko<span>.</span></div>
-          <div class="pdf-title">Annual<br><em>Safety Report</em><br>2026</div>
-          <div class="pdf-meta">CONFIDENTIAL · ARKO.GE · 2026-05-06</div>
+      <div class="pdf-doc">
+        <div class="pdf-doc-header">
+          <div class="pdf-doc-logo">Arko<span>.</span></div>
+          <div class="pdf-doc-meta">
+            <div class="pdf-doc-meta-title">Annual Safety Report 2026</div>
+            <div class="pdf-doc-meta-sub">CONFIDENTIAL · REF: ASR-2026-001</div>
+          </div>
         </div>
-        <div class="pdf-body">
-          <div class="pdf-row"><div class="pdf-num">01</div><div class="pdf-line"></div></div>
-          <div class="pdf-row"><div class="pdf-num">02</div><div class="pdf-line" style="max-width:80%"></div></div>
-          <div class="pdf-row"><div class="pdf-num">03</div><div class="pdf-line" style="max-width:60%"></div></div>
-          <div class="pdf-pg">01 / 24</div>
+        <div class="pdf-doc-cover-band">
+          <div class="pdf-doc-cover-eyebrow">Executive Summary</div>
+          <div class="pdf-doc-cover-title">Safety Performance <em>Review</em></div>
+        </div>
+        <div class="pdf-doc-body">
+          <div>
+            <div class="pdf-section-title">Overview</div>
+            <div class="pdf-para">In 2026, Arko monitored 2,847 active construction sites across Georgia, achieving a network-wide risk score of 98.4% — up from 94.1% the prior year. A total of 340 potential incidents were identified and resolved before escalation.</div>
+          </div>
+          <div>
+            <div class="pdf-section-title">Key Metrics</div>
+            <table class="pdf-table">
+              <tr><th>Metric</th><th>2025</th><th>2026</th><th>Δ</th></tr>
+              <tr><td>Sites monitored</td><td>1,940</td><td class="pdf-td-val">2,847</td><td class="pdf-td-good">+46.8%</td></tr>
+              <tr><td>Risk score</td><td>94.1%</td><td class="pdf-td-val">98.4%</td><td class="pdf-td-good">+4.3pp</td></tr>
+              <tr><td>Incidents prevented</td><td>198</td><td class="pdf-td-val">340</td><td class="pdf-td-good">+71.7%</td></tr>
+              <tr><td>Avg response time</td><td>8.4 min</td><td class="pdf-td-val">3.2 min</td><td class="pdf-td-good">−61.9%</td></tr>
+              <tr><td>Open incidents</td><td>12</td><td class="pdf-td-val">3</td><td class="pdf-td-warn">Review</td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="pdf-doc-footer">
+          <div class="pdf-footer-brand">Arko<span>.</span> Safety Intelligence</div>
+          <div class="pdf-footer-pg">01 / 24</div>
         </div>
       </div>
     </div>
