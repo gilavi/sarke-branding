@@ -29,29 +29,20 @@ body{font-family:var(--D);background:var(--bg);color:var(--t1);-webkit-font-smoo
 .uc-label{font-family:var(--M);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--t3);padding:12px 18px 10px;border-bottom:1px solid var(--b)}
 .uc-body{padding:18px}
 
-/* ── OFFICE: physical site render ── */
-.site-scene{display:flex;flex-direction:column;gap:12px}
-.site-board{background:#111;border-radius:8px;overflow:hidden;border:2px solid rgba(200,245,68,0.18)}
-.site-board-top{background:#0A0A0A;border-bottom:3px solid #C8F544;padding:14px 18px;display:flex;align-items:center;justify-content:space-between}
-.site-board-logo{font-family:var(--D);font-size:18px;font-weight:700;letter-spacing:-0.04em;color:#F5F5F0}
-.site-board-logo span{color:#C8F544}
-.site-board-badge{font-family:var(--M);font-size:7px;color:rgba(200,245,68,0.6);letter-spacing:0.08em;text-transform:uppercase;border:1px solid rgba(200,245,68,0.25);padding:3px 8px;border-radius:2px}
-.site-board-body{padding:14px 18px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.site-board-field{border-bottom:1px solid rgba(200,245,68,0.08);padding-bottom:8px}
-.site-board-label{font-family:var(--M);font-size:7px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(200,245,68,0.3);margin-bottom:3px}
-.site-board-val{font-family:var(--D);font-size:12px;font-weight:500;color:#F5F5F0;letter-spacing:-0.02em}
-.site-board-full{grid-column:1/-1}
-.site-board-warning{background:#0A0A0A;border-top:1px solid rgba(200,245,68,0.1);padding:10px 18px;display:flex;align-items:center;gap:10px}
-.site-board-warn-icon{font-size:16px}
-.site-board-warn-text{font-family:var(--M);font-size:8px;color:rgba(245,245,240,0.35);letter-spacing:0.03em}
-.site-board-warn-text strong{color:#C8F544;font-weight:700}
-.ppe-row{display:flex;gap:10px}
-.ppe-item{flex:1;background:var(--s2);border:1px solid rgba(200,245,68,0.1);border-radius:7px;padding:14px;display:flex;flex-direction:column;align-items:center;gap:8px}
-.ppe-icon{font-size:28px;line-height:1}
-.ppe-label-wrap{text-align:center}
-.ppe-name{font-family:var(--M);font-size:8px;color:rgba(200,245,68,0.35);margin-bottom:2px;letter-spacing:0.04em}
-.ppe-brand{font-family:var(--D);font-size:12px;font-weight:700;letter-spacing:-0.03em;color:#F5F5F0}
-.ppe-brand span{color:#C8F544}
+/* ── OFFICE: lobby render ── */
+.office-scene{border-radius:8px;overflow:hidden;display:flex;flex-direction:column;height:224px;border:1px solid rgba(200,245,68,0.1)}
+.office-room{flex:1;background:#0A0A0A;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;position:relative}
+.office-room::before,.office-room::after{content:'';position:absolute;top:0;bottom:0;width:48px;background:rgba(200,245,68,0.02);border-right:1px solid rgba(200,245,68,0.06)}
+.office-room::before{left:0;border-right:1px solid rgba(200,245,68,0.06)}.office-room::after{right:0;border-right:none;border-left:1px solid rgba(200,245,68,0.06)}
+.office-sign{text-align:center;position:relative;z-index:1}
+.office-wordmark{font-family:var(--D);font-size:34px;font-weight:700;letter-spacing:-0.04em;color:#F5F5F0;line-height:1}
+.office-wordmark span{color:#C8F544}
+.office-sub{font-family:var(--M);font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(200,245,68,0.28);margin-top:6px}
+.office-counter{height:48px;background:#060606;border-top:2px solid #C8F544;display:flex;align-items:center;padding:0 20px;justify-content:space-between}
+.office-counter-mark{font-family:var(--D);font-size:11px;font-weight:700;letter-spacing:-0.04em;color:rgba(245,245,240,0.15)}
+.office-counter-mark span{color:#C8F544;opacity:.4}
+.office-counter-items{display:flex;gap:6px;align-items:center}
+.office-counter-item{height:6px;border-radius:1px;background:rgba(200,245,68,0.07)}
 
 /* APP */
 .phone{width:180px;height:360px;background:#141414;border-radius:32px;padding:9px;border:1px solid rgba(255,255,255,0.1);box-shadow:0 30px 60px rgba(0,0,0,0.7);margin:0 auto}
@@ -153,28 +144,21 @@ hr{border:none;border-top:1px solid var(--b);margin:28px 0}
 
   <div class="uc-card">
     <div class="uc-label">// Office</div>
-    <div class="uc-body">
-      <div class="site-scene">
-        <div class="site-board">
-          <div class="site-board-top">
-            <div class="site-board-logo">ARKO<span>_</span></div>
-            <div class="site-board-badge">ISO 45001</div>
-          </div>
-          <div class="site-board-body">
-            <div class="site-board-field"><div class="site-board-label">Project</div><div class="site-board-val">Tower Block A, Tbilisi</div></div>
-            <div class="site-board-field"><div class="site-board-label">Site Manager</div><div class="site-board-val">G. Kheladze</div></div>
-            <div class="site-board-field"><div class="site-board-label">Phase</div><div class="site-board-val">Structural — Level 12</div></div>
-            <div class="site-board-field"><div class="site-board-label">Days Without Incident</div><div class="site-board-val" style="font-size:18px;font-family:var(--D);font-weight:700;letter-spacing:-0.04em;color:#C8F544">247</div></div>
-          </div>
-          <div class="site-board-warning">
-            <div class="site-board-warn-icon">⚠</div>
-            <div class="site-board-warn-text"><strong>PPE_REQUIRED</strong> — hard hat, hi-vis vest, safety boots mandatory.</div>
+    <div class="uc-body" style="padding:0">
+      <div class="office-scene">
+        <div class="office-room">
+          <div class="office-sign">
+            <div class="office-wordmark">ARKO<span>_</span></div>
+            <div class="office-sub">// Safety Intelligence</div>
           </div>
         </div>
-        <div class="ppe-row">
-          <div class="ppe-item"><div class="ppe-icon">🪖</div><div class="ppe-label-wrap"><div class="ppe-name">HARD_HAT</div><div class="ppe-brand">ARKO<span>_</span></div></div></div>
-          <div class="ppe-item"><div class="ppe-icon">🦺</div><div class="ppe-label-wrap"><div class="ppe-name">HI-VIS</div><div class="ppe-brand">ARKO<span>_</span></div></div></div>
-          <div class="ppe-item"><div class="ppe-icon">🚧</div><div class="ppe-label-wrap"><div class="ppe-name">HOARDING</div><div class="ppe-brand">ARKO<span>_</span></div></div></div>
+        <div class="office-counter">
+          <div class="office-counter-mark">ARKO<span>_</span></div>
+          <div class="office-counter-items">
+            <div class="office-counter-item" style="width:28px"></div>
+            <div class="office-counter-item" style="width:44px"></div>
+            <div class="office-counter-item" style="width:16px"></div>
+          </div>
         </div>
       </div>
     </div>
